@@ -3,18 +3,30 @@ BeginPackage["EccentricPN`",
   {"EccentricPNSymbols`", "KoenigsdoerfferAndGopakumar`",
    "MemmesheimerEtAl`", "Kappas`"}];
 
-ephSquaredInne;
+(*******************************************************************)
+(* Public functions *)
+(*******************************************************************)
+
 PrecomputeEccentric;
 EccentricSoln;
 
+(*******************************************************************)
+(* Symbols *)
+(*******************************************************************)
+
+{om,h,psi4,psi4Om,psi4Phi};
+
 Begin["`Private`"];
 
-(* FIXME *)
-t = Global`t;
+(*******************************************************************)
+(* Utility functions *)
+(*******************************************************************)
+
+(* We might want to move these into their own package *)
 
 Col[i_, l_] := Map[{#[[1]], #[[i]]} &, l];
 
-AmpPhase[tb_] :=
+AmpPhase[tb_List] :=
   Module[{ampPhaseTb,z,t,previousPhase, i, currentPhase = 0, cycles =
           0, nPoints},
   nPoints = Length[tb];
@@ -29,27 +41,28 @@ AmpPhase[tb_] :=
    ampPhaseTb[[i]] = {t, Abs[z], 2 Pi cycles + currentPhase}];
   Return[ampPhaseTb]]
 
-Phase[tb_] := Col[3, AmpPhase[tb]];
+Phase[tb_List] := Col[3, AmpPhase[tb]];
 
-Amplitude[tb_] := Col[2, AmpPhase[tb]];
+Amplitude[tb_List] := Col[2, AmpPhase[tb]];
 
-
-
-ephSquaredInne = 
-  Simplify[ComposeSeries[ephSquaredInEpsj /. j -> jInne, EpsInne]];
-
-(* This is computed analytically; we should do that here *)
-h22 = (-4*eta*Sqrt[Pi/5]*(1 + r*(phiDot*r + I*rDot)^2))/(E^((2*I)*phi)*r*R);
-
-
+(* Truncate a power series to its first n terms *)
 FirstTerms[SeriesData_[var_, about_, terms_,nmin_,nmax_,den_], n_] :=
   Module[{coeffs,powers},
     coeffs = Take[terms,n];
     powers = Take[Table[var^(i/den), {i, nmin, nmax}],n];
-    Dot[coeffs,powers]
-  ];
+    Dot[coeffs,powers]];
 
-(*
+(*******************************************************************)
+(* PN computations *)
+(*******************************************************************)
+
+ephSquaredInne = 
+  Simplify[ComposeSeries[ephSquaredInEpsj /. j -> jInne, EpsInne]];
+
+(* FIXME: This is computed analytically; we should do that here *)
+h22 = (-4*eta*Sqrt[Pi/5]*(1 + r*(phiDot*r + I*rDot)^2))/(E^((2*I)*phi)*r*R);
+
+(* TODO:
 
 * Make the eccentric solution generator generic
 
@@ -57,10 +70,9 @@ FirstTerms[SeriesData_[var_, about_, terms_,nmin_,nmax_,den_], n_] :=
 
 * Make sure all quantities are clearly derived from papers
 
-* Allow arbitrary PN order
+* Allow arbitrary PN order 
 
 *)
-
 
 PrecomputeEccentric[] :=
   Module[{},
@@ -93,8 +105,6 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
     extend = !(phi0 === None);
     t1 = If[extend, Min[Floor[t0,dt],t1p], Floor[t1p,dt]];
     t2 = Ceiling[t2p,dt];
-(*    Print["t1 = ", t1];
-    Print["t2 = ", t2];*)
     return = False;
     Quiet[Check[
       neSoln = NDSolve[{D[n[t], t] == nDotRHS, D[e[t], t] == eDotRHS, 
@@ -106,7 +116,6 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
     If[return, Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate}]];
 
     nFn = n /. neSoln; eFn = e /. neSoln;
-(*    t2 = Min[t2p, nFn[[1]][[1]][[2]]];*)
     If[nFn[[1]][[1]][[2]] < t1, Return[indeterminate]];
     nTb = Table[nFn[t], {t, t1, t2, dt}];
     eTb = Table[eFn[t], {t, t1, t2, dt}];
@@ -114,10 +123,6 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
     ephTb = MapThread[
       ephExpr /. {n -> #1, e -> #2} &, {nTb, eTb}];
     betaphTb = MapThread[betaphIneph /. {eph -> #1} &, {ephTb}];
-
-(*    eph0 = ephExpr /. {n -> n0, e -> e0};
-    betaPhi0 = konigsbetaphi /. eph -> eph0;
-    l0 = keplerRHS /. {n -> n0, e -> e0, u -> u0, betaPhi -> betaPhi0};*)
 
     lSoln = NDSolve[{D[l[t], t] == n[t], l[t0] == l0} /. neSoln, {l}, {t, Min[t1,t0], 
         Max[t2,t0]}][[1]];
@@ -140,8 +145,6 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
        omExpr /. {u -> #1, n -> #2, e -> #3} &, {uTb, nTb, eTb}];
     omFn = Interpolation[MapThread[List, {tTb, omTb}], InterpolationOrder->ord];
 
-
-(*    Quiet[ *)
     If[phi0 === None,
       phiSoln = 
        NDSolve[{phi'[t] == omFn[t], phi[t1] == 0}, {phi}, {t, t1, t2}][[1]],
@@ -171,8 +174,6 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
         t2, dt}];
     psi4OmTb = MapThread[Im[#1/#2] &, {psi4DotTb, psi4Tb}];
     psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}], InterpolationOrder->ord];
-(*    ,
-    InterpolatingFunction::dmval];*)
 
     Return[{r -> rFn, om -> omFn, h -> hFn, psi4 -> psi4Fn, phi -> phiFn, psi4Om -> psi4OmFn, psi4Phi -> psi4PhaseFn,
             n -> nFn, e -> eFn, u -> uFn}];
