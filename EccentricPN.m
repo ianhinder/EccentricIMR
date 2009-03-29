@@ -96,10 +96,7 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
               {t1p_?NumberQ, t2p_?NumberQ, dt_?NumberQ}] :=
   Module[{l, neSoln, nFn, eFn, nTb,eTb,
           tTb, ephTb, betaphTb, eph0, betaPhi0, lSoln, lFn, lTb, uTb, uFn, rTb,
-          rFn, rDotFn, rDotTb, omTb, omFn, phiSoln, phiFn, phiTb, hTb, hFn, hPhase, 
-          hPhaseFn, hAmp, hAmpFn, 
-          psi4Tb, psi4DotTb, psi4OmTb, psi4OmFn, psi4phSoln, psi4phFn,
-          psi4Phase, psi4PhaseFn, psi4phTb, 
+          rFn, rDotFn, rDotTb, omTb, omFn, phiSoln, phiFn, phiTb, 
           ord = 5, t2, delta = 3*dt, indeterminate, extend, t1, return},
     indeterminate = {_ -> Indeterminate};
     extend = !(phi0 === None);
@@ -153,6 +150,29 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
     phiFn = phi /. phiSoln;
 
     phiTb = Table[phiFn[t], {t, t1, t2, dt}];
+
+    coords = {r -> rFn, om -> omFn, phi -> phiFn};
+    vars = {n -> nFn, e -> eFn, u -> uFn};
+
+    Print[phiTb];
+
+    waveform = EccentricWaveform[tTb, phiTb, rTb, rDotTb, omTb, ord];
+
+    Return[Join[coords, vars, waveform]];
+];
+
+
+
+
+EccentricWaveform[tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List, 
+                  ord_Integer] :=
+  Module[{t1, t2, dt, hTb, hFn, hPhase, hPhaseFn, hAmp, hAmpFn, psi4Tb,
+          psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn},
+
+    t1 = First[tTb];
+    t2 = Last[tTb];
+    dt = tTb[[2]] - tTb[[1]];
+
     hTb = MapThread[
        konigsh22 /. {phi -> #1, r -> #2, rDot -> #3, 
          phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}];
@@ -170,14 +190,16 @@ EccentricSoln[{n0_?NumberQ, e0_?NumberQ, l0_?NumberQ, phi0_}, t0_?NumberQ,
     psi4PhaseFn = Interpolation[psi4Phase, InterpolationOrder->ord];
 
     psi4DotTb = 
-      Table[psi4DotAmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn, t -> tx}, {tx, t1, 
-        t2, dt}];
+      Table[psi4DotAmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn, 
+        t -> tx}, {tx, t1, t2, dt}];
     psi4OmTb = MapThread[Im[#1/#2] &, {psi4DotTb, psi4Tb}];
-    psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}], InterpolationOrder->ord];
+    psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}], 
+      InterpolationOrder->ord];
 
-    Return[{r -> rFn, om -> omFn, h -> hFn, psi4 -> psi4Fn, phi -> phiFn, psi4Om -> psi4OmFn, psi4Phi -> psi4PhaseFn,
-            n -> nFn, e -> eFn, u -> uFn}];
-];
+    Return[{h -> hFn, psi4 -> psi4Fn, psi4Om -> psi4OmFn, 
+            psi4Phi -> psi4PhaseFn}];
+  ];
+
 
 End[];
 
