@@ -1,0 +1,21 @@
+
+Reorganisation of PN scripts
+============================
+
+We have scripts for:
+
+* PN expressions typed in from papers
+
+* Manipulation of PN expressions to generate new ones
+
+* Functions for solving evolution problems involving PN expressions
+
+* Functions for fitting solutions to evolution problems to numerical data
+
+We need to organise all of the above.  We can start with the expressions from papers.  Each expression should be labelled with the paper and equation number it came from.  We need a naming scheme.  We need consistent notation.  The notation might depend on the paper.  Or maybe we should define a standard notation.  That is probably simpler.
+
+For the moment, concentrate on the eccentric PN expressions.  Have one MMA package per paper.  For PN expressions, we use MMA SeriesData objects.  Do we need some functions for manipulating them?  Do we need to be careful with problems such as non-integer powers? Maybe in MMA 7 these problems have been solved?
+
+
+
+
