@@ -63,7 +63,7 @@ eDotInxe;
 (* Symbols *)
 (*******************************************************************)
 
-{om,h,psi4,psi4Om,psi4Phi};
+{om,h,psi4,psi4Om,psi4Phi,X0,Y0,x0,e0,n0};
 
 Begin["`Private`"];
 
@@ -141,6 +141,8 @@ psi4DotAmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t, t]];
 neModel = {
   X -> n,
   Y -> e,
+  X0 -> n0,
+  Y0 -> e0,
   XDot -> FirstTerms[nDotInne, 5] /. {n -> n[t], e -> e[t]},
   YDot -> FirstTerms[eDotInne, 5] /. {n -> n[t], e -> e[t]},
   ephSquaredInXY -> (Simplify[Sqrt[Normal[ephSquaredInne]]] /. eta -> 0.25),
@@ -152,6 +154,8 @@ neModel = {
 xeModel = {
   X -> x,
   Y -> e,
+  X0 -> x0,
+  Y0 -> e0,
   XDot -> FirstTerms[xDotInxe, 5] /. {x -> x[t], e -> e[t]},
   YDot -> FirstTerms[eDotInxe, 5] /. {x -> x[t], e -> e[t]},
   ephSquaredInXY -> (Simplify[Normal[ephInxe^2]] /. eta -> 0.25),
