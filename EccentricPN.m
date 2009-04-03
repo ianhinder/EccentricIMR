@@ -58,12 +58,15 @@ lInxe;
 ephInxe;
 xDotInxe;
 eDotInxe;
+xInEpsj;
+eInEpsj;
 
 (*******************************************************************)
 (* Symbols *)
 (*******************************************************************)
 
-{om,h,psi4,psi4Om,psi4Phi,X0,Y0,x0,e0,n0};
+{om,h,psi4,psi4Om,psi4Phi,X0,Y0,x0,e0,n0,XDot,YDot,lInXY, nInXY, lInXY,
+ephSquaredInXY, omInXY, rInXY};
 
 Begin["`Private`"];
 
@@ -129,6 +132,28 @@ xDotInxe =
   D[xInne, n] nDotInne + 
     D[xInne, e] eDotInne /. n -> nInxe];
 eDotInxe = Simplify[eDotInne /. n -> nInxe];
+
+(* From Arun et al. *)
+xInEpsj = Eps(1+Eps(-5/4+nu/12+2/j)
+ +Eps^2(5/2+5/24nu+nu^2/18+(-5+2nu)/Sqrt[j]+1/j(-5+7/6nu)+1/j^2(33/2-5nu))
+ +Eps^3(-235/48-25/24nu-25/576nu^2+35/1296nu^3+1/j(35/4-5/3nu+25/36nu^2)
+        +1/Sqrt[j](145/8-235/24nu+29/12nu^2)+1/j^(3/2)(-45+(472/9-41/96Pi^2)nu-5nu^2)
+        +1/j^2(-565/8+(1903/24-41/64Pi^2)nu-95/12nu^2)+1/j^3(529/3+(-610/3+205/64Pi^2)nu+35/4nu^2))) +O[Eps]^4 /.nu->eta;
+
+etADM = Sqrt[(1-j+Eps/4(-8+8nu-j(-17+7nu))
+  +Eps^2/8(8+4nu+20nu^2-j(112-47nu+16nu^2)-24Sqrt[j](-5+2nu)
+  +4/j(17-11nu)-24/Sqrt[j](5-2nu))
+  +Eps^3/192(24(-2+5nu)(-23+10nu+4nu^2)-15j(-528+200nu-77nu^2+24nu^3)
+    -72Sqrt[j](265-193nu+46nu^2)-2/j(6732+117nu Pi^2-12508nu+2004nu^2)
+    +2/Sqrt[j](16380-19964nu+123nu Pi^2+3240nu^2)
+    -2/j^(3/2)(10080+123nu Pi^2-13952nu+1440nu^2)+96/j^2(134-281nu+5nu Pi^2+16nu^2))) + O[Eps]^4];
+
+etMHminusADM = Eps^2/Sqrt[1-j](1/4+17/4nu)(1-1/j)+
+  Eps^3/Sqrt[1-j](-19/32-52/3nu+225/32nu^2+1/j(29/16+(79039/1680-21/16Pi^2)nu-201/16nu^2)
+  +1/j^2(-3/2+(-14501/420+21/16Pi^2)nu+5nu^2))+O[Eps]^4;
+
+eInEpsj = etADM + etMHminusADM/.nu->eta;
+
 
 (* FIXME: This is computed analytically; we should do that here instead *)
 h22 = (-4*eta*Sqrt[Pi/5]*(1 + r*(phiDot*r + I*rDot)^2))/(E^((2*I)*phi)*r*R);
