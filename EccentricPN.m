@@ -60,6 +60,8 @@ xDotInxe;
 eDotInxe;
 xInEpsj;
 eInEpsj;
+EpsInxe;
+jInxe;
 
 (*******************************************************************)
 (* Symbols *)
@@ -153,6 +155,11 @@ etMHminusADM = Eps^2/Sqrt[1-j](1/4+17/4nu)(1-1/j)+
   +1/j^2(-3/2+(-14501/420+21/16Pi^2)nu+5nu^2))+O[Eps]^4;
 
 eInEpsj = etADM + etMHminusADM/.nu->eta;
+
+EpsInxe = Simplify[ComposeSeries[EpsInne, nInxe]];
+
+jInxe = Simplify[ComposeSeries[jInne, nInxe]];
+
 
 
 (* FIXME: This is computed analytically; we should do that here instead *)
