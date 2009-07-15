@@ -243,8 +243,11 @@ EccentricSoln[model_, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
          FindRoot[#1 == (lInXY/.model) /. {x -> #4, y -> #3, 
             betaPhi -> #2}, {u, #1, #1+0.1}]) &, {lTb, betaphTb, yTb, xTb}];
 
-    uFn = Interpolation[MapThread[List, {tTb, uTb}], InterpolationOrder->ord];
+    (* FIXME: at this point, we might have a very small number number
+       of points.  Is the calculation even meaningful?  Shouldn't we
+       have some sort of automatic error check? *)
 
+    uFn = Interpolation[MapThread[List, {tTb, uTb}], InterpolationOrder->ord];
     rTb = MapThread[
        (rInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}];
     rFn = Interpolation[MapThread[List, {tTb, rTb}], InterpolationOrder->ord];
