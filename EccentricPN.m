@@ -45,6 +45,7 @@ FirstTerms;
 
 neModel;
 xeModel;
+xeNewtModel;
 
 (*******************************************************************)
 (* PN expressions *)
@@ -197,10 +198,23 @@ xeModel = {
   rInXY -> Normal[rInxe] /. eta -> 0.25,
   omInXY -> Normal[omInxe] /. eta -> 0.25};
 
-EccentricSoln[model_, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
+xeNewtModel = {
+  X -> x,
+  Y -> e,
+  X0 -> x0,
+  Y0 -> e0,
+  XDot -> FirstTerms[xDotInxe, 1] /. {x -> x[t], e -> e[t]},
+  YDot -> FirstTerms[eDotInxe, 1] /. {x -> x[t], e -> e[t]},
+  ephSquaredInXY -> (Simplify[FirstTerms[ephInxe^2,1]] /. eta -> 0.25),
+  lInXY -> Simplify[FirstTerms[lInxe, 1] /. {eta -> 0.25}],
+  nInXY -> FirstTerms[nInxe,1] /. eta -> 0.25,
+  rInXY -> FirstTerms[rInxe,1] /. eta -> 0.25,
+  omInXY -> FirstTerms[omInxe,1] /. eta -> 0.25};
+
+EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
               dt_?NumberQ}] :=
-  Module[{x,y,l, xySoln, xFn, yFn, xTb,yTb,
+  Module[{x,y, xySoln, xFn, yFn, xTb,yTb,
           tTb, ephTb, betaphTb, eph0, betaPhi0, lSoln, lFn, lTb, uTb, uFn, rTb,
           rFn, rDotFn, rDotTb, omTb, omFn, phiSoln, phiFn, phiTb, 
           ord = 5, t2, delta = 3*dt, indeterminate, extend, t1, return, 
@@ -214,7 +228,7 @@ EccentricSoln[model_, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
     return = False;
     adiabatic = {D[x[t], t] == (XDot /. model), 
                         D[y[t], t] == (YDot /. model), 
-         x[t0] == x0, y[t0] == y0} /. eta -> 0.25;
+         x[t0] == x0, y[t0] == y0} /. eta -> eta0;
 
     Quiet[Check[
       xySoln = NDSolve[adiabatic,
@@ -267,7 +281,7 @@ EccentricSoln[model_, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
     phiTb = Table[phiFn[t], {t, t1, t2, dt}];
 
     coords = {r -> rFn, om -> omFn, phi -> phiFn};
-    vars = {x -> xFn, y -> yFn, u -> uFn};
+    vars = {x -> xFn, y -> yFn, u -> uFn, l -> lFn};
     waveform = EccentricWaveform[tTb, phiTb, rTb, rDotTb, omTb, ord];
 
     Return[Join[coords, vars, waveform]];
