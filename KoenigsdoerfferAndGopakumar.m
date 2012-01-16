@@ -66,6 +66,8 @@ EpsInne =
                       2016eta^2))) /. xi -> n;
     x2 = x1 + O[n]^(10/3)];
 
+(* This is called jInne, but j == C == -2 E L^2 *)
+
 jInne = 
   Module[{x1,x2},
 
@@ -182,7 +184,7 @@ lInne =
 betaphIneph = (1 - Sqrt[1 - eph^2])/eph;
 
 hPlus = -eta/R((1 + Cos[th]^2)(2 rDot r phiDot Sin[2 (phi - ph)] + 
-  (1/r + r^2 phiDot^2 - rDot^2)Cos[2(phi - ph)]) - 
+  (1/r + r^2 phiDot^2 - rDot^2)Cos[2(phi - ph)]) - (* This sign is wrong, but doesn't affect the 2,2 mode *)
   Sin[th]^2(1/r - r^2 phiDot^2 - rDot^2));
 
 hCross = -2eta/R Cos[th]((1/r + r^2 phiDot^2 - rDot^2)Sin[2(phi - ph)] - 
