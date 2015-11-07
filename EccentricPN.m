@@ -172,6 +172,8 @@ hAmpPhaseExpr = hamp[t] Exp[I hphase[t]];
 psi4AmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t]];
 psi4DotAmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t, t]];
 
+etaFixed = 0.25; (*2./9;*)
+
 neModel = {
   X -> n,
   Y -> e,
@@ -179,11 +181,11 @@ neModel = {
   Y0 -> e0,
   XDot -> FirstTerms[nDotInne, 5] /. {n -> n[t], e -> e[t]},
   YDot -> FirstTerms[eDotInne, 5] /. {n -> n[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[Sqrt[Normal[ephSquaredInne]]] /. eta -> 0.25),
-  lInXY -> Simplify[FirstTerms[lInne, 7] /. {eta -> 0.25}],
+  ephSquaredInXY -> (Simplify[Sqrt[Normal[ephSquaredInne]]] /. eta -> etaFixed),
+  lInXY -> Simplify[FirstTerms[lInne, 7] /. {eta -> etaFixed}],
   nInXY -> n,
-  rInXY -> Normal[rInne] /. eta -> 0.25,
-  omInXY -> Normal[omInne] /. eta -> 0.25};
+  rInXY -> Normal[rInne] /. eta -> etaFixed,
+  omInXY -> Normal[omInne] /. eta -> etaFixed};
 
 xeModel = {
   X -> x,
@@ -192,11 +194,11 @@ xeModel = {
   Y0 -> e0,
   XDot -> FirstTerms[xDotInxe, 5] /. {x -> x[t], e -> e[t]},
   YDot -> FirstTerms[eDotInxe, 5] /. {x -> x[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[Normal[ephInxe^2]] /. eta -> 0.25),
-  lInXY -> Simplify[FirstTerms[lInxe, 7] /. {eta -> 0.25}],
-  nInXY -> Normal[nInxe] /. eta -> 0.25,
-  rInXY -> Normal[rInxe] /. eta -> 0.25,
-  omInXY -> Normal[omInxe] /. eta -> 0.25};
+  ephSquaredInXY -> (Simplify[Normal[ephInxe^2]] /. eta -> etaFixed),
+  lInXY -> Simplify[FirstTerms[lInxe, 7] /. {eta -> etaFixed}],
+  nInXY -> Normal[nInxe] /. eta -> etaFixed,
+  rInXY -> Normal[rInxe] /. eta -> etaFixed,
+  omInXY -> Normal[omInxe] /. eta -> etaFixed};
 
 xeNewtModel = {
   X -> x,
@@ -205,11 +207,11 @@ xeNewtModel = {
   Y0 -> e0,
   XDot -> FirstTerms[xDotInxe, 1] /. {x -> x[t], e -> e[t]},
   YDot -> FirstTerms[eDotInxe, 1] /. {x -> x[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[FirstTerms[ephInxe^2,1]] /. eta -> 0.25),
-  lInXY -> Simplify[FirstTerms[lInxe, 1] /. {eta -> 0.25}],
-  nInXY -> FirstTerms[nInxe,1] /. eta -> 0.25,
-  rInXY -> FirstTerms[rInxe,1] /. eta -> 0.25,
-  omInXY -> FirstTerms[omInxe,1] /. eta -> 0.25};
+  ephSquaredInXY -> (Simplify[FirstTerms[ephInxe^2,1]] /. eta -> etaFixed),
+  lInXY -> Simplify[FirstTerms[lInxe, 1] /. {eta -> etaFixed}],
+  nInXY -> FirstTerms[nInxe,1] /. eta -> etaFixed,
+  rInXY -> FirstTerms[rInxe,1] /. eta -> etaFixed,
+  omInXY -> FirstTerms[omInxe,1] /. eta -> etaFixed};
 
 EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
