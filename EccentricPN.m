@@ -245,7 +245,8 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
        return = True,
        NDSolve::ndsz], NDSolve::ndsz];
 
-    If[return, Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate}]];
+    If[return, Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate,
+      hOm -> Indeterminate}]];
 
     xFn = x /. xySoln; yFn = y /. xySoln;
     If[xFn[[1]][[1]][[2]] < t1, Return[indeterminate]];
@@ -298,19 +299,20 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
 
 EccentricWaveform[tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List, 
                   ord_Integer] :=
-  Module[{t1, t2, dt, hTb, hFn, hPhase, hPhaseFn, hAmp, hAmpFn, psi4Tb,
+  Module[{t1, t2, dt, hTb, hFn, hPhase, hPhaseFn, hOmFn, hAmp, hAmpFn, psi4Tb,
           psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn},
 
     t1 = First[tTb];
     t2 = Last[tTb];
     dt = tTb[[2]] - tTb[[1]];
-
+(* Print["Creating waveform with dt = ", dt]; *)
     hTb = MapThread[
        konigsh22 /. {phi -> #1, r -> #2, rDot -> #3, 
          phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}];
     hFn = Interpolation[MapThread[List, {tTb, hTb}], InterpolationOrder->ord];
     hPhase = Phase[MapThread[List, {tTb, hTb}]];
     hPhaseFn = Interpolation[hPhase, InterpolationOrder->ord];
+    hOmFn = Derivative[1][hPhaseFn];
     hAmp = Amplitude[MapThread[List, {tTb, hTb}]];
     hAmpFn = Interpolation[hAmp, InterpolationOrder->ord];
     psi4Tb = 
@@ -328,8 +330,8 @@ EccentricWaveform[tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
     psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}], 
       InterpolationOrder->ord];
 
-    Return[{h -> hFn, psi4 -> psi4Fn, psi4Om -> psi4OmFn, 
-            psi4Phi -> psi4PhaseFn}];
+    Return[{h -> hFn, hPhi -> hPhaseFn, psi4 -> psi4Fn, psi4Om -> psi4OmFn, 
+            psi4Phi -> psi4PhaseFn, hOm -> hOmFn}];
   ];
 
 
