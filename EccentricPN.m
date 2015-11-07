@@ -225,8 +225,15 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
     y = (Y/.model);
     indeterminate = {_ -> Indeterminate};
     extend = !(phi0 === None);
-    t1 = If[extend, Min[Floor[t0,dt],t1p], Floor[t1p,dt]];
-    t2 = Ceiling[t2p,dt];
+    (* t1 = If[extend, Min[Floor[t0,dt],t1p], Floor[t1p,dt]]; *)
+    (* t2 = Ceiling[t2p,dt]; *)
+
+    (* The above rounds t1, which I think isn't necessary.  What is
+       necessary is that dt divides t2-t1. *)
+
+    t1 = If[extend, Min[t0,t1p], t1p];
+    t2 = t1 + Ceiling[t2p-t1,dt];
+
     return = False;
     adiabatic = {D[x[t], t] == (XDot /. model), 
                         D[y[t], t] == (YDot /. model), 
