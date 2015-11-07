@@ -69,7 +69,7 @@ jInxe;
 (* Symbols *)
 (*******************************************************************)
 
-{om,h,psi4,psi4Om,psi4Phi,X0,Y0,x0,e0,n0,XDot,YDot,lInXY, nInXY, lInXY,
+{om,h,psi4,psi4Om,hOm,hPhi,psi4Phi,X0,Y0,x0,e0,n0,l0,phi0,XDot,YDot,lInXY, nInXY, lInXY,
 ephSquaredInXY, omInXY, rInXY};
 
 Begin["`Private`"];
