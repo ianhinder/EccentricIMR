@@ -239,14 +239,22 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
                         D[y[t], t] == (YDot /. model), 
          x[t0] == x0, y[t0] == y0} /. eta -> eta0;
 
-    Quiet[Check[
-      xySoln = NDSolve[adiabatic,
-       {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}][[1]],
-       return = True,
-       NDSolve::ndsz], NDSolve::ndsz];
+    Quiet[xySoln = NDSolve[adiabatic,
+      {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}][[1]],NDSolve::ndsz];
 
-    If[return, Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate,
-      hOm -> Indeterminate}]];
+    (* Print[xySoln]; *)
+    (* Print["old t2 = ",t2]; *)
+    t2 = t1 + Floor[(x/.xySoln)[[1,1,2]]-t1,dt];
+    (* Print["new t2 = ",t2]; *)
+
+    (* Quiet[Check[ *)
+    (*   xySoln = NDSolve[adiabatic, *)
+    (*    {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}][[1]], *)
+    (*    return = True, *)
+    (*    NDSolve::ndsz], NDSolve::ndsz]; *)
+
+    (* If[return, Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate, *)
+    (*   hOm -> Indeterminate}]]; *)
 
     xFn = x /. xySoln; yFn = y /. xySoln;
     If[xFn[[1]][[1]][[2]] < t1, Return[indeterminate]];
