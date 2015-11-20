@@ -112,7 +112,9 @@ FirstTerms[SeriesData_[var_, about_, terms_,nmin_,nmax_,den_], n_] :=
 (* PN computations *)
 (*******************************************************************)
 
-ephSquaredInne = 
+If[computed =!= True,
+
+ephSquaredInne :=
   Simplify[ComposeSeries[ephSquaredInEpsj /. j -> jInne, EpsInne]];
 
 (* This has been derived from Memmesheimer et al. paper in another
@@ -212,6 +214,9 @@ xeNewtModel = {
   nInXY -> FirstTerms[nInxe,1] /. eta -> etaFixed,
   rInXY -> FirstTerms[rInxe,1] /. eta -> etaFixed,
   omInXY -> FirstTerms[omInxe,1] /. eta -> etaFixed};
+computed = True;
+  ];
+
 
 EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
