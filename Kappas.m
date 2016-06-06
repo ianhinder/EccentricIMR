@@ -5,6 +5,9 @@ BeginPackage["Kappas`",
 kappaE;
 kappaJ;
 
+$KappaECacheFile;
+$KappaJCacheFile;
+
 Begin["`Private`"];
 
 BesselJprime[p_, x_] := Module[{y, d}, d = D[BesselJ[p, y], y]; d /. y -> x];
@@ -64,8 +67,16 @@ generateKappaEFn[] :=
 (*generateKappaEFn[];*)
 
 kappaE[e_?NumberQ] := 
-  kappaEFn[e];
-
+(
+  If[StringQ[$KappaECacheFile] && FileExistsQ[$KappaECacheFile],
+    kappaEFn = Get[$KappaECacheFile],
+    generateKappaEFn[];
+    If[StringQ[$KappaECacheFile],
+      Put[kappaEFn, $KappaECacheFile]]];
+  
+  kappaE[ee_?NumberQ] :=
+  kappaEFn[ee];
+  kappaE[e]);
 
 
 
@@ -109,10 +120,18 @@ generateKappaJFn[] :=
 (*generateKappaJFn[];*)
 
 kappaJ[e_?NumberQ] := 
-  kappaJFn[e];
+(
+  If[StringQ[$KappaJCacheFile] && FileExistsQ[$KappaJCacheFile],
+    kappaJFn = Get[$KappaJCacheFile],
+    generateKappaJFn[];
+    If[StringQ[$KappaJCacheFile],
+      Put[kappaJFn, $KappaJCacheFile]]];
+  
+  kappaJ[ee_?NumberQ] :=
+  kappaJFn[ee];
+  kappaJ[e]);
 
-generateKappaEFn[];
-generateKappaJFn[];
+(* generateKappaEFn[]; *)
 
 End[];
 
