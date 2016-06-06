@@ -48,7 +48,7 @@ computeKappaE[ep_] :=
       Return[(ser /. e->ep)//N]]];
 
 generateKappaETable[] :=
-  Table[{e, computeKappaE[e]}, {e, -0.5, 0.5, 0.001}];
+  Table[{e, computeKappaE[e]}, {e, -0.8, 0.8, 0.001}];
 
 saveKappaETable[file_] :=
   Export[file, generateKappaETable[], "TSV"];
@@ -99,7 +99,7 @@ computeKappaJ[ep_] :=
       Return[(ser /. e->ep)//N]]];
 
 generateKappaJTable[] :=
-  Table[{e, computeKappaJ[e]}, {e, -0.5, 0.5, 0.001}];
+  Table[{e, computeKappaJ[e]}, {e, -0.8, 0.8, 0.001}];
 
 generateKappaJFn[] :=
   Module[{},
