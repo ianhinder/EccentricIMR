@@ -65,12 +65,14 @@ eInEpsj;
 EpsInxe;
 jInxe;
 
+$EccentricPNWaveformOrder;
+
 (*******************************************************************)
 (* Symbols *)
 (*******************************************************************)
 
 {om,h,psi4,psi4Om,hOm,hPhi,psi4Phi,X0,Y0,x0,e0,n0,l0,phi0,XDot,YDot,lInXY, nInXY, lInXY,
-ephSquaredInXY, omInXY, rInXY};
+ephSquaredInXY, omInXY, rInXY, $eta};
 
 Begin["`Private`"];
 
@@ -169,12 +171,22 @@ jInxe = Simplify[ComposeSeries[jInne, nInxe]];
 (* FIXME: This is computed analytically; we should do that here instead *)
 h22 = (-4*eta*Sqrt[Pi/5]*(1 + r*(phiDot*r + I*rDot)^2))/(E^((2*I)*phi)*r*R);
 
-konigsh22 = h22 /. {eta -> 0.25, R -> 1};
+etaFixed = $eta; (*0.25;*) (*2./9;*)
+
+konigsh22 = h22 /. {eta -> $eta, R -> 1};
+
+h22InOrbital0PN = (-4*eta*Sqrt[Pi/5]*(1 + r*(phiDot*r + I*rDot)^2))/(E^((2*I)*phi)*r*R);
+h22InOrbital1PN = (1/(7 r^2 R))E^(-2 I phi) eta Sqrt[Pi/5] (210 - 11 phiDot^2 r^3 + 
+   3 (-7 eta - 52 eta phiDot^2 r^3 + 9 (-1 + 3 eta) phiDot^4 r^6) + 
+   2 I phiDot r^2 (-5 (5 + 27 eta) + 
+      27 (-1 + 3 eta) phiDot^2 r^3) rDot + 3 (15 + 32 eta) r rDot^2 + 
+   54 I (-1 + 3 eta) phiDot r^3 rDot^3 + 27 (1 - 3 eta) r^2 rDot^4);
+
+h22InOrbital = {h22InOrbital0PN,0,2/3 h22InOrbital1PN} /. {eta -> $eta, R -> 1};
 hAmpPhaseExpr = hamp[t] Exp[I hphase[t]];
 psi4AmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t]];
 psi4DotAmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t, t]];
 
-etaFixed = 0.25; (*2./9;*)
 
 neModel = {
   X -> n,
@@ -218,14 +230,16 @@ computed = True;
   ];
 
 
-EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi0_},
+EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
               dt_?NumberQ}] :=
   Module[{x,y, xySoln, xFn, yFn, xTb,yTb,
           tTb, ephTb, betaphTb, eph0, betaPhi0, lSoln, lFn, lTb, uTb, uFn, rTb,
           rFn, rDotFn, rDotTb, omTb, omFn, phiSoln, phiFn, phiTb, 
           ord = 5, t2, delta = 3*dt, indeterminate, extend, t1, return, 
-          adiabatic, lEqs},
+          adiabatic, lEqs, model},
+    (* Print["t1p,t2p = ", {t1p, t2p}]; *)
+    model = model1 /.$eta->eta0;
     x = (X/.model);
     y = (Y/.model);
     indeterminate = {_ -> Indeterminate};
@@ -240,9 +254,9 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
     t2 = t1 + Ceiling[t2p-t1,dt];
 
     return = False;
-    adiabatic = {D[x[t], t] == (XDot /. model), 
-                        D[y[t], t] == (YDot /. model), 
-         x[t0] == x0, y[t0] == y0} /. eta -> eta0;
+    adiabatic = {D[x[t], t] == Re[(XDot /. model)], 
+                        D[y[t], t] == Re[(YDot /. model)], 
+         x[t0] == N@x0, y[t0] == N@y0} /. eta -> N@eta0;
 
     Quiet[xySoln = NDSolve[adiabatic,
       {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}][[1]],NDSolve::ndsz];
@@ -305,22 +319,27 @@ EccentricSoln[model_, eta0_?NumberQ, {x0_?NumberQ, y0_?NumberQ, l0_?NumberQ, phi
 
     coords = {r -> rFn, om -> omFn, phi -> phiFn};
     vars = {x -> xFn, y -> yFn, u -> uFn, l -> lFn};
-    waveform = EccentricWaveform[tTb, phiTb, rTb, rDotTb, omTb, ord];
+    waveform = EccentricWaveform[eta0, tTb, phiTb, rTb, rDotTb, omTb, ord];
 
     Return[Join[coords, vars, waveform]];
 ];
 
-EccentricWaveform[tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List, 
+EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List, 
                   ord_Integer] :=
   Module[{t1, t2, dt, hTb, hFn, hPhase, hPhaseFn, hOmFn, hAmp, hAmpFn, psi4Tb,
-          psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn},
+          psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn, order,
+         h22Expr},
 
     t1 = First[tTb];
     t2 = Last[tTb];
     dt = tTb[[2]] - tTb[[1]];
 (* Print["Creating waveform with dt = ", dt]; *)
+
+    order = If[!ValueQ[$EccentricPNWaveformOrder], 0, $EccentricPNWaveformOrder];
+
+    h22Expr = Plus@@Take[h22InOrbital /. $eta->eta, 2 order + 1];
     hTb = MapThread[
-       konigsh22 /. {phi -> #1, r -> #2, rDot -> #3, 
+       h22Expr /. {phi -> #1, r -> #2, rDot -> #3, 
          phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}];
     hFn = Interpolation[MapThread[List, {tTb, hTb}], InterpolationOrder->ord];
     hPhase = Phase[MapThread[List, {tTb, hTb}]];
