@@ -66,6 +66,7 @@ EpsInxe;
 jInxe;
 
 $EccentricPNWaveformOrder;
+$EccentricPNComputePsi4;
 
 (*******************************************************************)
 (* Symbols *)
@@ -359,22 +360,24 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
     hPhase = Phase[MapThread[List, {tTb, hTb}]];
     hPhaseFn = Interpolation[hPhase, InterpolationOrder->ord];
     hOmFn = Derivative[1][hPhaseFn];
-    hAmp = Amplitude[MapThread[List, {tTb, hTb}]];
-    hAmpFn = Interpolation[hAmp, InterpolationOrder->ord];
-    psi4Tb = 
-      Table[psi4AmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn,t -> tx}, {tx, t1, t2, 
+    
+    If[$EccentricPNComputePsi4 =!= False,
+      hAmp = Amplitude[MapThread[List, {tTb, hTb}]];
+      hAmpFn = Interpolation[hAmp, InterpolationOrder->ord];
+      psi4Tb =
+      Table[psi4AmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn,t -> tx}, {tx, t1, t2,
         dt}];
 
-    psi4Fn = Interpolation[MapThread[List, {tTb, psi4Tb}], InterpolationOrder->ord];
-    psi4Phase = Phase[MapThread[List, {tTb, psi4Tb}]];
-    psi4PhaseFn = Interpolation[psi4Phase, InterpolationOrder->ord];
+      psi4Fn = Interpolation[MapThread[List, {tTb, psi4Tb}], InterpolationOrder->ord];
+      psi4Phase = Phase[MapThread[List, {tTb, psi4Tb}]];
+      psi4PhaseFn = Interpolation[psi4Phase, InterpolationOrder->ord];
 
-    psi4DotTb = 
-      Table[psi4DotAmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn, 
+      psi4DotTb =
+      Table[psi4DotAmpPhaseExpr /. {hamp -> hAmpFn, hphase -> hPhaseFn,
         t -> tx}, {tx, t1, t2, dt}];
-    psi4OmTb = MapThread[Im[#1/#2] &, {psi4DotTb, psi4Tb}];
-    psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}], 
-      InterpolationOrder->ord];
+      psi4OmTb = MapThread[Im[#1/#2] &, {psi4DotTb, psi4Tb}];
+      psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}],
+        InterpolationOrder->ord]];
 
     Return[{h -> hFn, hPhi -> hPhaseFn, psi4 -> psi4Fn, psi4Om -> psi4OmFn, 
             psi4Phi -> psi4PhaseFn, hOm -> hOmFn}];
