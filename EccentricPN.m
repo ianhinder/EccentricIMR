@@ -229,6 +229,9 @@ xeNewtModel = {
 computed = True;
   ];
 
+EccentricSoln[args___] :=
+  (Print["Invalid arguments: ", HoldForm[EccentricSoln[args]]];
+    StringJoin[ToString[#,InputForm]&/@Riffle[{args},","],"]"];Abort[]);
 
 EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
@@ -258,9 +261,11 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
                         D[y[t], t] == Re[(YDot /. model)], 
          x[t0] == N@x0, y[t0] == N@y0} /. eta -> N@eta0;
 
-    Quiet[xySoln = NDSolve[adiabatic,
-      {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}][[1]],NDSolve::ndsz];
+(* Print["adiabatic = ", adiabatic]; *)
 
+    (* Print["Requesting solution in ", {Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}]; *)
+    Quiet[xySoln = NDSolve[adiabatic,
+      {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]},StepMonitor:>(Global`$EccentricState=t)][[1]],NDSolve::ndsz];
     (* Print[xySoln]; *)
     (* Print["old t2 = ",t2]; *)
     t2 = t1 + Floor[(x/.xySoln)[[1,1,2]]-t1,dt];
@@ -276,13 +281,19 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     (*   hOm -> Indeterminate}]]; *)
 
     xFn = x /. xySoln; yFn = y /. xySoln;
-    If[xFn[[1]][[1]][[2]] < t1, Return[indeterminate]];
+    (* Print["xFn = ", xFn]; *)
+    If[xFn[[1]][[1]][[2]] < t1, Print["Eccentric PN solution finished at ", xFn[[1]][[1]][[2]], " which is before the requested start time ", t1]; Return[indeterminate]];
     xTb = Table[xFn[t], {t, t1, t2, dt}];
     yTb = Table[yFn[t], {t, t1, t2, dt}];
     tTb = Table[t, {t, t1, t2, dt}];
     ephTb = MapThread[
       (ephSquaredInXY /. model) /. {x -> #1, y -> #2} &, {xTb, yTb}];
     betaphTb = MapThread[betaphIneph /. {eph -> #1} &, {ephTb}];
+
+    If[Length[xTb] < 2, (*Print["EccentricSoln: Solution too short"]; *)
+
+      Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate,
+        hOm -> Indeterminate}]];
 
     lEqs = {D[l[t], t] == ((nInXY/.model)/.{x->x[t],y->y[t]}), l[t0] == l0} /. xySoln;
     lSoln = NDSolve[lEqs, {l}, 
@@ -332,6 +343,9 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
 
     t1 = First[tTb];
     t2 = Last[tTb];
+    If[Length[tTb] < 2,
+      Print["EccentricWaveform: Input data too short (tTb = "<>ToString[tTb]<>")"];
+      Abort[]];
     dt = tTb[[2]] - tTb[[1]];
 (* Print["Creating waveform with dt = ", dt]; *)
 
