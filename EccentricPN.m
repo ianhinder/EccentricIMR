@@ -257,6 +257,10 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     t1 = If[extend, Min[t0,t1p], t1p];
     t2 = t1 + Ceiling[t2p-t1,dt];
 
+    If[x0 < 0 || Abs[y0] > 1,
+      Print["WARNING: Invalid parameters ", {x0,y0,l0,phi0}, "; returning indeterminate"];
+      Return[indeterminate]];
+
     return = False;
     adiabatic = {D[x[t], t] == Re[(XDot /. model)], 
                         D[y[t], t] == Re[(YDot /. model)], 
