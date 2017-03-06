@@ -374,8 +374,8 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     RecordProfile["Tabulate rDot",
     rDotTb = Table[rDotFn[t], {t, t1, t2, dt}]];
     RecordProfile["Evaluate omTb",
-    omTb = MapThread[
-       (omInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}]];
+    omTb = omInXY /. model /. {u -> uTb, x -> xTb, y -> yTb};]
+
     RecordProfile["Interpolate omTb",
     omFn = Interpolation[MapThread[List, {tTb, omTb}], InterpolationOrder->ord]];
 
