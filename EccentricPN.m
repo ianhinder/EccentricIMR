@@ -68,6 +68,12 @@ jInxe;
 $EccentricPNWaveformOrder;
 $EccentricPNComputePsi4;
 
+EccProfileCallTime;
+EccProfileCallCount;
+EccProfileReportTime;
+ClearEccProfileCall;
+EccProfileReportCount;
+
 (*******************************************************************)
 (* Symbols *)
 (*******************************************************************)
@@ -110,6 +116,37 @@ FirstTerms[SeriesData_[var_, about_, terms_,nmin_,nmax_,den_], n_] :=
     coeffs = Take[terms,n];
     powers = Take[Table[var^(i/den), {i, nmin, nmax}],n];
     Dot[coeffs,powers]];
+
+
+ClearEccProfileCall[] :=
+  Module[{},
+    Clear[EccProfileCallTime];
+    Clear[EccProfileCallCount]];
+
+SetAttributes[RecordProfile, HoldAll];
+
+RecordProfile[name_, code_] := (*code;*)
+   Module[{time, result, name2, result2, subTimers},
+    name2 = Evaluate[name];
+    {time, result} = AbsoluteTiming[ReleaseHold[code]];
+    If[Head[EccProfileCallTime[name2]] === EccProfileCallTime, EccProfileCallTime[name2] = 0.0];
+    If[Head[EccProfileCallCount[name2]] === EccProfileCallCount, EccProfileCallCount[name2] = 0];
+    EccProfileCallTime[name2] += time;
+    EccProfileCallCount[name2] += 1;
+    result];
+
+EccProfileReportTime[] :=
+  Module[{},
+    Reverse@SortBy[DownValues[EccProfileCallTime], #[[2]] &] /. 
+    HoldPattern -> HoldForm /. ((x_ :> y_) :> {y, x}) /. 
+    EccProfileCallTime[x_] :> x // TableForm];
+
+EccProfileReportCount[] :=
+  Module[{},
+    Reverse@SortBy[DownValues[EccProfileCallCount], #[[2]] &] /. 
+    HoldPattern -> HoldForm /. ((x_ :> y_) :> {y, x}) /. 
+    EccProfileCallCount[x_] :> x // TableForm];
+
 
 (*******************************************************************)
 (* PN computations *)
@@ -243,6 +280,8 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
           ord = 5, t2, delta = 3*dt, indeterminate, extend, t1, return, 
           adiabatic, lEqs, model},
     (* Print["t1p,t2p = ", {t1p, t2p}]; *)
+
+    RecordProfile["Setup",
     model = model1 /.$eta->eta0;
     x = (X/.model);
     y = (Y/.model);
@@ -264,15 +303,21 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     return = False;
     adiabatic = {D[x[t], t] == Re[(XDot /. model)], 
                         D[y[t], t] == Re[(YDot /. model)], 
-         x[t0] == N@x0, y[t0] == N@y0} /. eta -> N@eta0;
+         x[t0] == N@x0, y[t0] == N@y0} /. eta -> N@eta0];
 
 (* Print["adiabatic = ", adiabatic]; *)
 
     (* Print["Requesting solution in ", {Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]}]; *)
+
+    RecordProfile["Adiabatic ODE solve",
+
     Quiet[xySoln = NDSolve[adiabatic,
-      {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]},StepMonitor:>(Global`$EccentricState=t)][[1]],NDSolve::ndsz];
+      {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]},StepMonitor:>(Global`$EccentricState=t)][[1]],NDSolve::ndsz]];
     (* Print[xySoln]; *)
     (* Print["old t2 = ",t2]; *)
+
+    RecordProfile["Intermediate",
+
     t2 = t1 + Floor[(x/.xySoln)[[1,1,2]]-t1,dt];
     (* Print["new t2 = ",t2]; *)
 
@@ -305,36 +350,50 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
       {t, Min[t1,t0], Max[t2,t0]}][[1]];
 
     lFn = l /. lSoln;
-    lTb = Map[lFn, tTb];
+    lTb = Map[lFn, tTb]];
 
+    RecordProfile["Kepler",
     uTb = MapThread[(u /. 
          FindRoot[#1 == (lInXY/.model) /. {x -> #4, y -> #3, 
-            betaPhi -> #2}, {u, #1, #1+0.1}]) &, {lTb, betaphTb, yTb, xTb}];
+            betaPhi -> #2}, {u, #1, #1+0.1}]) &, {lTb, betaphTb, yTb, xTb}]];
 
     (* FIXME: at this point, we might have a very small number number
        of points.  Is the calculation even meaningful?  Shouldn't we
        have some sort of automatic error check? *)
 
-    uFn = Interpolation[MapThread[List, {tTb, uTb}], InterpolationOrder->ord];
+    RecordProfile["Compute uFn",
+    uFn = Interpolation[MapThread[List, {tTb, uTb}], InterpolationOrder->ord]];
+    RecordProfile["Compute rTb",
     rTb = MapThread[
-       (rInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}];
-    rFn = Interpolation[MapThread[List, {tTb, rTb}], InterpolationOrder->ord];
-    rDotFn = Derivative[1][rFn];
-    rDotTb = Table[rDotFn[t], {t, t1, t2, dt}];
+       (rInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}]];
+    RecordProfile["Interpolate rTb",
+    rFn = Interpolation[MapThread[List, {tTb, rTb}], InterpolationOrder->ord]];
+
+    RecordProfile["Differentiate rFn",
+    rDotFn = Derivative[1][rFn]];
+    RecordProfile["Tabulate rDot",
+    rDotTb = Table[rDotFn[t], {t, t1, t2, dt}]];
+    RecordProfile["Evaluate omTb",
     omTb = MapThread[
-       (omInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}];
-    omFn = Interpolation[MapThread[List, {tTb, omTb}], InterpolationOrder->ord];
+       (omInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}]];
+    RecordProfile["Interpolate omTb",
+    omFn = Interpolation[MapThread[List, {tTb, omTb}], InterpolationOrder->ord]];
+
+    RecordProfile["Calculate phi",
 
     If[phi0 === None,
       phiSoln = 
        NDSolve[{phi'[t] == omFn[t], phi[t1] == 0}, {phi}, {t, t1, t2}][[1]],
       phiSoln = 
-       NDSolve[{phi'[t] == omFn[t], phi[t0] == phi0}, {phi}, {t, t1, t2}][[1]]];
-    phiFn = phi /. phiSoln;
-    phiTb = Table[phiFn[t], {t, t1, t2, dt}];
+       NDSolve[{phi'[t] == omFn[t], phi[t0] == phi0}, {phi}, {t, t1, t2}][[1]]]];
 
+    phiFn = phi /. phiSoln;
+    RecordProfile["Tabulate phi",
+    phiTb = Table[phiFn[t], {t, t1, t2, dt}]];
+
+    RecordProfile["Rest",
     coords = {r -> rFn, om -> omFn, phi -> phiFn};
-    vars = {x -> xFn, y -> yFn, u -> uFn, l -> lFn};
+    vars = {x -> xFn, y -> yFn, u -> uFn, l -> lFn};];
     waveform = EccentricWaveform[eta0, tTb, phiTb, rTb, rDotTb, omTb, ord];
 
     Return[Join[coords, vars, waveform]];
@@ -346,6 +405,7 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
           psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn, order,
          h22Expr},
 
+    RecordProfile["Waveform",
     t1 = First[tTb];
     t2 = Last[tTb];
     If[Length[tTb] < 2,
@@ -381,7 +441,7 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
         t -> tx}, {tx, t1, t2, dt}];
       psi4OmTb = MapThread[Im[#1/#2] &, {psi4DotTb, psi4Tb}];
       psi4OmFn = Interpolation[MapThread[List, {tTb, psi4OmTb}],
-        InterpolationOrder->ord]];
+        InterpolationOrder->ord]]];
 
     Return[{h -> hFn, hPhi -> hPhaseFn, psi4 -> psi4Fn, psi4Om -> psi4OmFn, 
             psi4Phi -> psi4PhaseFn, hOm -> hOmFn}];
