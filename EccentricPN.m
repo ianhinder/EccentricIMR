@@ -341,8 +341,8 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     tTb = Table[t, {t, t1, t2, dt}]];
 
     RecordProfile["Compute eph",
-    ephTb = MapThread[
-      (ephSquaredInXY /. model) /. {x -> #1, y -> #2} &, {xTb, yTb}]];
+    ephTb = ephSquaredInXY /. model /. {x -> xTb, y -> yTb}];
+
     RecordProfile["Compute betaphTb",
     betaphTb = MapThread[betaphIneph /. {eph -> #1} &, {ephTb}]];
 
