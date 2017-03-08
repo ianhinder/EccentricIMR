@@ -424,9 +424,8 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
 
     h22Expr = Plus@@Take[h22InOrbital /. $eta->eta, 2 order + 1];
     RecordProfile["Evaluate h22",
-    hTb = MapThread[
-       h22Expr /. {phi -> #1, r -> #2, rDot -> #3, 
-         phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}]];
+    hTb = h22Expr /. {phi -> phiTb, r -> rTb, rDot -> rDotTb, 
+         phiDot -> omTb}];
 
     RecordProfile["Interpolate h",
     hFn = Interpolation[MapThread[List, {tTb, hTb}], InterpolationOrder->ord]];
