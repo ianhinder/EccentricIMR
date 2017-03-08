@@ -412,7 +412,6 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
           psi4Fn, psi4Phase, psi4PhaseFn, psi4DotTb, psi4OmTb, psi4OmFn, order,
          h22Expr},
 
-    RecordProfile["Waveform",
     t1 = First[tTb];
     t2 = Last[tTb];
     If[Length[tTb] < 2,
@@ -424,14 +423,19 @@ EccentricWaveform[eta_, tTb_List, phiTb_List, rTb_List, rDotTb_List, omTb_List,
     order = If[!ValueQ[$EccentricPNWaveformOrder], 0, $EccentricPNWaveformOrder];
 
     h22Expr = Plus@@Take[h22InOrbital /. $eta->eta, 2 order + 1];
+    RecordProfile["Evaluate h22",
     hTb = MapThread[
        h22Expr /. {phi -> #1, r -> #2, rDot -> #3, 
-         phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}];
-    hFn = Interpolation[MapThread[List, {tTb, hTb}], InterpolationOrder->ord];
+         phiDot -> #4} &, {phiTb, rTb, rDotTb, omTb}]];
+
+    RecordProfile["Interpolate h",
+    hFn = Interpolation[MapThread[List, {tTb, hTb}], InterpolationOrder->ord]];
+    RecordProfile["Evaluate h phase",
     hPhase = Phase[MapThread[List, {tTb, hTb}]];
-    hPhaseFn = Interpolation[hPhase, InterpolationOrder->ord];
+    hPhaseFn = Interpolation[hPhase, InterpolationOrder->ord]];
     hOmFn = Derivative[1][hPhaseFn];
     
+    RecordProfile["Compute psi4",
     If[$EccentricPNComputePsi4 =!= False,
       hAmp = Amplitude[MapThread[List, {tTb, hTb}]];
       hAmpFn = Interpolation[hAmp, InterpolationOrder->ord];
