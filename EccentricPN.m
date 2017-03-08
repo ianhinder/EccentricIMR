@@ -332,24 +332,32 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
 
     xFn = x /. xySoln; yFn = y /. xySoln;
     (* Print["xFn = ", xFn]; *)
-    If[xFn[[1]][[1]][[2]] < t1, Print["Eccentric PN solution finished at ", xFn[[1]][[1]][[2]], " which is before the requested start time ", t1]; Return[indeterminate]];
+    If[xFn[[1]][[1]][[2]] < t1, Print["Eccentric PN solution finished at ", xFn[[1]][[1]][[2]], " which is before the requested start time ", t1]; Return[indeterminate]]];
+
+    RecordProfile["Tabulate x, y and t",
+
     xTb = Table[xFn[t], {t, t1, t2, dt}];
     yTb = Table[yFn[t], {t, t1, t2, dt}];
-    tTb = Table[t, {t, t1, t2, dt}];
+    tTb = Table[t, {t, t1, t2, dt}]];
+
+    RecordProfile["Compute eph",
     ephTb = MapThread[
-      (ephSquaredInXY /. model) /. {x -> #1, y -> #2} &, {xTb, yTb}];
-    betaphTb = MapThread[betaphIneph /. {eph -> #1} &, {ephTb}];
+      (ephSquaredInXY /. model) /. {x -> #1, y -> #2} &, {xTb, yTb}]];
+    RecordProfile["Compute betaphTb",
+    betaphTb = MapThread[betaphIneph /. {eph -> #1} &, {ephTb}]];
 
     If[Length[xTb] < 2, (*Print["EccentricSoln: Solution too short"]; *)
 
       Return[{psi4Om -> Indeterminate, psi4Phi -> Indeterminate,
         hOm -> Indeterminate}]];
 
+    RecordProfile["l solve",
     lEqs = {D[l[t], t] == ((nInXY/.model)/.{x->x[t],y->y[t]}), l[t0] == l0} /. xySoln;
     lSoln = NDSolve[lEqs, {l}, 
-      {t, Min[t1,t0], Max[t2,t0]}][[1]];
+      {t, Min[t1,t0], Max[t2,t0]}][[1]]];
 
     lFn = l /. lSoln;
+    RecordProfile["Tabulate l",
     lTb = Map[lFn, tTb]];
 
     RecordProfile["Kepler",
