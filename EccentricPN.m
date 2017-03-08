@@ -364,8 +364,7 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     RecordProfile["Compute uFn",
     uFn = Interpolation[MapThread[List, {tTb, uTb}], InterpolationOrder->ord]];
     RecordProfile["Compute rTb",
-    rTb = MapThread[
-       (rInXY/.model) /. {u -> #1, x -> #2, y -> #3} &, {uTb, xTb, yTb}]];
+    rTb = (rInXY/.model) /. {u -> uTb, x -> xTb, y -> yTb}];
     RecordProfile["Interpolate rTb",
     rFn = Interpolation[MapThread[List, {tTb, rTb}], InterpolationOrder->ord]];
 
