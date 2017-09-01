@@ -17,8 +17,8 @@ etaOfq[q_] :=
 pnSolnToAssoc[soln_List, q_] :=
     Join[Association@Table[ToString[var[[1]]] -> var[[2]], {var,soln}],Association["q"->q]];
 
-EccentricPNSolution[params_Association, {t1_, t2_}] :=
-  Module[{pnSolnRules, dt=1.0},
+EccentricPNSolution[params_Association, {t1_, t2_, dt_:1.0}] :=
+  Module[{pnSolnRules},
     pnSolnRules = EccentricSoln[xeModel, N@etaOfq[params["q"]],
       {N@params["x0"], N@params["e0"], N@params["l0"], N@params["phi0"]},
       N@params["t0"], N/@{t1, t2, dt}];
@@ -162,14 +162,14 @@ blendWaveforms[{h1_List, h2_List}, {t1_, t2_}] :=
     Table[{t, phiBlendFn[t]}, {t, freqBlend[[All,1]]}];
   hBlend = Transpose[{ampBlendRes[[All,1]], ampBlendRes[[All,2]] Exp[I phiBlend[[All,2]]]}]];
 
-EccentricIMRWaveform[params_Association, {t1_, t2_}] :=
+EccentricIMRWaveform[params_Association, {t1_, t2_, dt_:1.0}] :=
   Module[{pnSoln, hCirc, ttm},
-    pnSoln = EccentricPNSolution[params, {t1, t2}];
+    pnSoln = EccentricPNSolution[params, {t1, t2, dt}];
     hCirc = CircularWaveform[params["q"], 0.];
     ttm = timeToMergerFunction[];
-    EccentricIMRWaveform[pnSoln, hCirc, params["q"], ttm]];
+    EccentricIMRWaveform[pnSoln, hCirc, params["q"], ttm, dt]];
 
-EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_] :=
+EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_, dt_] :=
  Module[{xFn, xRef, tRef, t, eRef, ttpCal, tPeakEcc, tPeakCirc, hCircShifted, hFn, 
    hPN, tBlendWindow, ePN, lPN, tBlendStart, xPN, tPN},
 
@@ -186,7 +186,7 @@ EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_] :=
   
   hCircShifted = shifted[hCirc, -tPeakCirc + tPeakEcc];
   hFn = pnSoln["h"];
-  hPN = Table[{t, hFn[t]}, {t, hFn[[1, 1, 1]], hFn[[1, 1, 2]], 1}];
+  hPN = Table[{t, hFn[t]}, {t, hFn[[1, 1, 1]], hFn[[1, 1, 2]], dt}];
   tBlendWindow = {tBlendStart, tPeakEcc + $circularisationTime};
   blendWaveforms[{hPN, hCircShifted}, tBlendWindow]];
 
