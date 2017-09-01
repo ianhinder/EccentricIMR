@@ -353,8 +353,8 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
 
     RecordProfile["l solve",
     lEqs = {D[l[t], t] == ((nInXY/.model)/.{x->x[t],y->y[t]}), l[t0] == l0} /. xySoln;
-    lSoln = NDSolve[lEqs, {l}, 
-      {t, Min[t1,t0], Max[t2,t0]}][[1]]];
+    lSoln = Quiet[NDSolve[lEqs, {l}, 
+      {t, Min[t1,t0], Max[t2,t0]}][[1]],NDSolve::ndsz]];
 
     lFn = l /. lSoln;
     RecordProfile["Tabulate l",
@@ -390,9 +390,9 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
 
     If[phi0 === None,
       phiSoln = 
-       NDSolve[{phi'[t] == omFn[t], phi[t1] == 0}, {phi}, {t, t1, t2}][[1]],
+       Quiet[NDSolve[{phi'[t] == omFn[t], phi[t1] == 0}, {phi}, {t, t1, t2}][[1]],NDSolve::ndsz],
       phiSoln = 
-       NDSolve[{phi'[t] == omFn[t], phi[t0] == phi0}, {phi}, {t, t1, t2}][[1]]]];
+       Quiet[NDSolve[{phi'[t] == omFn[t], phi[t0] == phi0}, {phi}, {t, t1, t2}][[1]],NDSolve::ndsz]]];
 
     phiFn = phi /. phiSoln;
     RecordProfile["Tabulate phi",
