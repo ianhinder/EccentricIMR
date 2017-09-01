@@ -293,6 +293,9 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     (* The above rounds t1, which I think isn't necessary.  What is
        necessary is that dt divides t2-t1. *)
 
+    (* TODO: Understand this logic about extension.  Why don't we
+       allow extension in all cases? *)
+
     t1 = If[extend, Min[t0,t1p], t1p];
     t2 = t1 + Ceiling[t2p-t1,dt];
 
