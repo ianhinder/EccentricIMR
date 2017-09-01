@@ -296,6 +296,11 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
     t1 = If[extend, Min[t0,t1p], t1p];
     t2 = t1 + Ceiling[t2p-t1,dt];
 
+
+    If[t0 < t1 || t0 > t2,
+      Print["EccentricSoln: ERROR: reference time t0 = ", t0, " is outside the solution domain ", {t1,t2}];
+      Abort[]];
+
     If[x0 < 0 || Abs[y0] > 1,
       Print["WARNING: Invalid parameters ", {x0,y0,l0,phi0}, "; returning indeterminate"];
       Return[indeterminate]];
