@@ -5,13 +5,25 @@
 A Mathematica package for generating gravitational waveforms for
 nonspinning eccentric binary black hole mergers.
 
+EccentricIMR was written by Ian Hinder and is distributed under the terms of the GNU General Public Licence (GPL) version 2.
+
+Copyright (C) Ian Hinder, 2017.
+
+See _Hinder, Kidder and Pfeiffer - An eccentric binary black hole inspiral-merger-ringdown gravitational waveform model from numerical relativity and post-Newtonian theory_, 2017 for details of the construction of the waveform.
+
 ## Installation
 
 ### Using Git (recommended)
 
-Change into your Mathematica applications directory
+Change into your Mathematica applications directory.
+
+For Mac OS,
 
     cd ~/Library/Mathematica/Applications
+
+For Linux,
+
+    cd ~/.Mathematica/Applications
 
 Clone the repository
 
@@ -19,12 +31,14 @@ Clone the repository
 
 ### Zip file download
 
-Download
+- Download
 [master.zip](https://github.com/ianhinder/EccentricIMR/archive/master.zip),
-extract it, rename the extracted directory EccentricIMR-master as
-EccentricIMR, and move it into your Mathematica applications directory
-(~/Library/Mathematica/Applications for Mac OS,
-~/.Mathematica/Applications for Linux).
+- Extract the zip file
+- Rename the extracted directory EccentricIMR-master as
+EccentricIMR
+- Move the directory into your Mathematica applications directory
+(~/Library/Mathematica/Applications on Mac OS,
+~/.Mathematica/Applications on Linux)
 
 ## Quick start
 
