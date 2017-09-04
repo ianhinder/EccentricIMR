@@ -18,8 +18,8 @@ $dataDirectory = FileNameJoin[{FileNameDrop[FindFile["EccentricIMR`Kappas`"],-1]
 $kappaERepoCacheFile = FileNameJoin[{$dataDirectory,"kappaE.m"}];
 $kappaJRepoCacheFile = FileNameJoin[{$dataDirectory,"kappaJ.m"}];
 
-If[FileExistsQ[$kappaERepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]];
-If[FileExistsQ[$kappaJRepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]];
+If[FileExistsQ[$kappaERepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]; Abort[]];
+If[FileExistsQ[$kappaJRepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]; Abort[]];
 
 BesselJprime[p_, x_] := Module[{y, d}, d = D[BesselJ[p, y], y]; d /. y -> x];
 
