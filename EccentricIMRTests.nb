@@ -27,18 +27,8 @@ Cell["Load packages", "Subsection",
  CellID->39284928],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"$Path", "=", 
-   RowBox[{"Prepend", "[", 
-    RowBox[{
-     RowBox[{"DeleteCases", "[", 
-      RowBox[{"$Path", ",", 
-       RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], ",", 
-     RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}]}], ";"}]], "Input",
- CellID->984305267],
-
-Cell[BoxData[
- RowBox[{"Get", "[", "\"\<EccentricIMR.m\>\"", "]"}]], "Input",
+ RowBox[{"<<", "EccentricIMR`"}]], "Input",
+ CellChangeTimes->{3.713520610902013*^9},
  CellID->1207950906]
 }, Open  ]],
 
@@ -211,6 +201,7 @@ Cell[BoxData[
        TagBox[GridBox[{
           {
            StyleBox[
+            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "Details-Label"],
              ImageSizeCache->{33., {1., 8.}}],
@@ -441,7 +432,6 @@ Cell[BoxData[
                     "MUnitExpressions", "Add"],
                     ImageSizeCache->{16., {3., 9.}}], 
                    StyleBox[
-                    
                     DynamicBox[FEPrivate`FrontEndResource[
                     "MUnitStrings", "AddMessages-Label"],
                     ImageSizeCache->{81., {3., 9.}}], "ButtonText",
@@ -492,7 +482,6 @@ Cell[BoxData[
                RawBoxes[
                 FEPrivate`FrontEndResource[
                 "MUnitStrings", "AddMessages-Tooltip"]]], "Tooltip"]& ],
-            
             Appearance->FEPrivate`FrontEndResource[
              "MUnitExpressions", "ButtonAppearances"],
             
@@ -595,7 +584,6 @@ Cell[BoxData[
                  "MUnitStrings", "SameTest-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
                  MUnit`InsertOptionRule["SameTest"]], 
-                
                 DynamicBox[FEPrivate`FrontEndResource[
                  "MUnitStrings", "TestID-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
@@ -1108,6 +1096,7 @@ Cell[BoxData[
                 
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
+                
                 ButtonFunction:>
                  Block[{$ContextPath}, Needs["MUnit`"]; MUnit`addOptions[]],
                 Evaluator->Automatic,
@@ -1116,7 +1105,6 @@ Cell[BoxData[
                 Method->"Queued"], 
                ActionMenuBox[
                 ButtonBox["\<\"\"\>",
-                 
                  Appearance->FEPrivate`FrontEndResource[
                   "MUnitExpressions", "ButtonAppearancesNoLeftBorder"],
                  ButtonFunction:>{},
@@ -1785,7 +1773,6 @@ Cell[BoxData[
             
             GridBoxAlignment->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
-            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
            "Grid"], True->
@@ -2289,6 +2276,7 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"]}, Dynamic[
@@ -2771,7 +2759,6 @@ Rational[2, 3]]]]\)",
        TagBox[GridBox[{
           {
            StyleBox[
-            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "ExpectedOutput-Detail"]],
             StripOnInput->False,
@@ -3119,7 +3106,6 @@ Cell[BoxData[
                FontColor->RGBColor[0.9059, 0.3451, 0.102]]}
             },
             AutoDelete->False,
-            
             GridBoxAlignment->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
             
