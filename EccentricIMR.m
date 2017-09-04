@@ -1,6 +1,6 @@
 
-BeginPackage["EccentricIMR`", 
-  {"EccentricPN`", "CircularMergerModel`"}];
+BeginPackage["EccentricIMR`EccentricIMR`", 
+  {"EccentricIMR`EccentricPN`", "EccentricIMR`CircularMergerModel`"}];
 
 EccentricIMRWaveform;
 EccentricPNSolution;

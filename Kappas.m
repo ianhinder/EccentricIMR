@@ -1,6 +1,6 @@
 
-BeginPackage["Kappas`", 
-  {"EccentricPNSymbols`"}];
+BeginPackage["EccentricIMR`Kappas`", 
+  {"EccentricIMR`EccentricPNSymbols`"}];
 
 kappaE;
 kappaJ;
@@ -14,7 +14,7 @@ $KappasFromRepository; (* Set this to False to regenerate the cache;
 
 Begin["`Private`"];
 
-$dataDirectory = FileNameJoin[{FileNameDrop[FindFile["Kappas`"],-1],"Data"}];
+$dataDirectory = FileNameJoin[{FileNameDrop[FindFile["EccentricIMR`Kappas`"],-1],"Data"}];
 $kappaERepoCacheFile = FileNameJoin[{$dataDirectory,"kappaE.m"}];
 $kappaJRepoCacheFile = FileNameJoin[{$dataDirectory,"kappaJ.m"}];
 

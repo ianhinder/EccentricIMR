@@ -1,7 +1,7 @@
 
-BeginPackage["EccentricPN`", 
-  {"EccentricPNSymbols`", "KoenigsdoerfferAndGopakumar`",
-   "MemmesheimerEtAl`", "Kappas`"}];
+BeginPackage["EccentricIMR`EccentricPN`", 
+  {"EccentricIMR`EccentricPNSymbols`", "EccentricIMR`KoenigsdoerfferAndGopakumar`",
+   "EccentricIMR`MemmesheimerEtAl`", "EccentricIMR`Kappas`"}];
 
 (* TODO:
 

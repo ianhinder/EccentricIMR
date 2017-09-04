@@ -1,5 +1,5 @@
 
-BeginPackage["MemmesheimerEtAl`", {"EccentricPNSymbols`"}];
+BeginPackage["EccentricIMR`MemmesheimerEtAl`", {"EccentricIMR`EccentricPNSymbols`"}];
 
 ephSquaredInEpsj;
 eSquaredInEpsj;

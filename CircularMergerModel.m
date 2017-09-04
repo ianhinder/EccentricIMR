@@ -1,12 +1,12 @@
 
-BeginPackage["CircularMergerModel`"];
+BeginPackage["EccentricIMR`CircularMergerModel`"];
 
 CircularWaveformModel;
 CircularWaveform;
 
 Begin["`Private`"];
 
-$CircularMergerModelDirectory = FileNameDrop[FindFile["CircularMergerModel`"],-1];
+$CircularMergerModelDirectory = FileNameDrop[FindFile["EccentricIMR`CircularMergerModel`"],-1];
 
 ReadCircularWaveformModel[] :=
   Get[FileNameJoin[{$CircularMergerModelDirectory,"Data","circular-model.m"}]];

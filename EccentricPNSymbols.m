@@ -1,5 +1,5 @@
 
-BeginPackage["EccentricPNSymbols`"];
+BeginPackage["EccentricIMR`EccentricPNSymbols`"];
 
 {n, e, u, x, l, eta, R, r, phiDot, th, ph, rDot, phi, Eps, j, eph};
 
