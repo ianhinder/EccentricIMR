@@ -77,5 +77,6 @@ Example:
     0.0403215 I}, {8., -0.119122 + 0.0457697 I}, {9., -0.11688 + 
     0.051116 I}}
 
+## Tests
 
-
+Open the notebook EccentricIMRTests.nb from the package directory and evaluate it.  The will run tests of several internal functions, as well as EccentricIMRWaveform.
