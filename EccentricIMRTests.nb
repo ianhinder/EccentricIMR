@@ -38,26 +38,6 @@ Cell[BoxData[
  CellID->984305267],
 
 Cell[BoxData[
- RowBox[{"<<", "Kappas`"}]], "Input",
- CellID->1152089628],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"$KappaJCacheFile", "=", 
-   RowBox[{
-    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../kappaJ.m\>\""}]}], 
-  ";"}]], "Input",
- CellID->1457816444],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"$KappaECacheFile", "=", 
-   RowBox[{
-    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../kappaE.m\>\""}]}], 
-  ";"}]], "Input",
- CellID->880045685],
-
-Cell[BoxData[
  RowBox[{"Get", "[", "\"\<EccentricIMR.m\>\"", "]"}]], "Input",
  CellID->1207950906]
 }, Open  ]],
@@ -214,6 +194,7 @@ Cell[BoxData[
            FontSize->14,
            FontWeight->Bold,
            FontColor->GrayLevel[1]], 
+          
           DynamicBox[FEPrivate`FrontEndResource[
            "MUnitExpressions", "SuccessCheck"],
            ImageSizeCache->{16., {4., 8.}}]}
@@ -230,7 +211,6 @@ Cell[BoxData[
        TagBox[GridBox[{
           {
            StyleBox[
-            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "Details-Label"],
              ImageSizeCache->{33., {1., 8.}}],
@@ -493,6 +473,7 @@ Cell[BoxData[
                     FontColor->RGBColor[0.9059, 0.3451, 0.102]]}
                  },
                  AutoDelete->False,
+                 
                  GridBoxAlignment->{
                   "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
                  
@@ -597,6 +578,7 @@ Cell[BoxData[
                 Method->"Queued"], 
                ActionMenuBox[
                 ButtonBox["\<\"\"\>",
+                 
                  Appearance->FEPrivate`FrontEndResource[
                   "MUnitExpressions", "ButtonAppearancesNoLeftBorder"],
                  ButtonFunction:>{},
@@ -1126,7 +1108,6 @@ Cell[BoxData[
                 
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
-                
                 ButtonFunction:>
                  Block[{$ContextPath}, Needs["MUnit`"]; MUnit`addOptions[]],
                 Evaluator->Automatic,
@@ -1527,6 +1508,7 @@ RowBox[{\"0.3`\", \",\", \"1.`\"}], \"}\"}], \",\", RowBox[{\"\[LeftSkeleton]\
        TagBox[GridBox[{
           {
            StyleBox[
+            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "CPUTimeUsed-Detail"]],
             StripOnInput->False,
@@ -1679,6 +1661,7 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"], True->
@@ -2306,7 +2289,6 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"]}, Dynamic[
@@ -3016,6 +2998,7 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"]}, Dynamic[
@@ -3365,6 +3348,7 @@ Cell[BoxData[
            FontSize->14,
            FontWeight->Bold,
            FontColor->GrayLevel[1]], 
+          
           DynamicBox[FEPrivate`FrontEndResource[
            "MUnitExpressions", "SuccessCheck"],
            ImageSizeCache->{16., {4., 8.}}]}
@@ -4870,7 +4854,6 @@ Cell[BoxData[
        TagBox[GridBox[{
           {
            StyleBox[
-            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "TestID-Detail"]],
             StripOnInput->False,
@@ -5187,6 +5170,7 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
+                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"]}, Dynamic[
@@ -5919,7 +5903,6 @@ Cell[BoxData[
                RawBoxes[
                 FEPrivate`FrontEndResource[
                 "MUnitStrings", "AddMessages-Tooltip"]]], "Tooltip"]& ],
-            
             Appearance->FEPrivate`FrontEndResource[
              "MUnitExpressions", "ButtonAppearances"],
             
@@ -6022,7 +6005,6 @@ Cell[BoxData[
                  "MUnitStrings", "SameTest-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
                  MUnit`InsertOptionRule["SameTest"]], 
-                
                 DynamicBox[FEPrivate`FrontEndResource[
                  "MUnitStrings", "TestID-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
@@ -6688,6 +6670,7 @@ Cell[BoxData[
                    RawBoxes[
                     FEPrivate`FrontEndResource[
                     "MUnitStrings", "AddOptions-Tooltip"]]], "Tooltip"]& ],
+                
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
                 
@@ -7399,7 +7382,6 @@ Cell[BoxData[
                    RawBoxes[
                     FEPrivate`FrontEndResource[
                     "MUnitStrings", "AddOptions-Tooltip"]]], "Tooltip"]& ],
-                
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
                 
@@ -8260,6 +8242,7 @@ Cell[BoxData[
                 
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
+                
                 ButtonFunction:>
                  Block[{$ContextPath}, Needs["MUnit`"]; MUnit`addOptions[]],
                 Evaluator->Automatic,
