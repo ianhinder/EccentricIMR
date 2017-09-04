@@ -8,7 +8,18 @@ kappaJ;
 $KappaECacheFile;
 $KappaJCacheFile;
 
+$KappasFromRepository; (* Set this to False to regenerate the cache;
+                          you also need to set the cache file
+                          variables *)
+
 Begin["`Private`"];
+
+$dataDirectory = FileNameJoin[{FileNameDrop[FindFile["Kappas`"],-1],"Data"}];
+$kappaERepoCacheFile = FileNameJoin[{$dataDirectory,"kappaE.m"}];
+$kappaJRepoCacheFile = FileNameJoin[{$dataDirectory,"kappaJ.m"}];
+
+If[FileExistsQ[$kappaERepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]];
+If[FileExistsQ[$kappaJRepoCacheFile] =!= True, Print["ERROR: ", $kappaERepoCacheFile, " not found"]];
 
 BesselJprime[p_, x_] := Module[{y, d}, d = D[BesselJ[p, y], y]; d /. y -> x];
 
@@ -68,11 +79,15 @@ generateKappaEFn[] :=
 
 kappaE[e_?NumberQ] := 
 (
-  If[StringQ[$KappaECacheFile] && FileExistsQ[$KappaECacheFile],
-    kappaEFn = Get[$KappaECacheFile],
-    generateKappaEFn[];
-    If[StringQ[$KappaECacheFile],
-      Put[kappaEFn, $KappaECacheFile]]];
+  If[$KappasFromRepository =!= False,
+    kappaEFn = Get[$kappaERepoCacheFile],
+    (* else *)
+    If[StringQ[$KappaECacheFile] && FileExistsQ[$KappaECacheFile],
+      kappaEFn = Get[$KappaECacheFile],
+      (* else *)
+      generateKappaEFn[];
+      If[StringQ[$KappaECacheFile],
+        Put[kappaEFn, $KappaECacheFile]]]];
   
   kappaE[ee_?NumberQ] :=
   kappaEFn[ee];
@@ -121,11 +136,16 @@ generateKappaJFn[] :=
 
 kappaJ[e_?NumberQ] := 
 (
-  If[StringQ[$KappaJCacheFile] && FileExistsQ[$KappaJCacheFile],
-    kappaJFn = Get[$KappaJCacheFile],
-    generateKappaJFn[];
-    If[StringQ[$KappaJCacheFile],
-      Put[kappaJFn, $KappaJCacheFile]]];
+  (* TODO: eliminate duplication with kappaE above *)
+  If[$KappasFromRepository =!= False,
+    kappaJFn = Get[$kappaJRepoCacheFile],
+    (* else *)
+    If[StringQ[$KappaJCacheFile] && FileExistsQ[$KappaJCacheFile],
+      kappaJFn = Get[$KappaJCacheFile],
+      (* else *)
+      generateKappaJFn[];
+      If[StringQ[$KappaJCacheFile],
+        Put[kappaJFn, $KappaJCacheFile]]]];
   
   kappaJ[ee_?NumberQ] :=
   kappaJFn[ee];
