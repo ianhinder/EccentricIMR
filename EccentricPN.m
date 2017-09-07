@@ -337,6 +337,11 @@ EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
 
     Quiet[xySoln = NDSolve[adiabatic,
       {x, y}, {t, Floor[Min[t1,t0]-delta,dt], Ceiling[t2+delta,dt]},StepMonitor:>(Global`$EccentricState=t)][[1]],NDSolve::ndsz]];
+    Module[{rhs0 = adiabatic[[All,2]] //. {t->t0, x[t0]->N@x0, y[t0]->N@y0}},
+      If[!And@@Map[NumberQ, rhs0],
+        Print["Initial adiabatic ODE RHS is non-numeric: ", rhs0];
+        Abort[]]];
+
     (* Print[xySoln]; *)
     (* Print["old t2 = ",t2]; *)
 
