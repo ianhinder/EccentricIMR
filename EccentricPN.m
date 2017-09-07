@@ -180,10 +180,9 @@ cacheResult[filep_,expr_] :=
 (* PN computations *)
 (*******************************************************************)
 
-If[computed =!= True,
-
-ephSquaredInne :=
-  Simplify[ComposeSeries[ephSquaredInEpsj /. j -> jInne, EpsInne]];
+ephSquaredInne =
+  cacheResult["ephSquaredInne.m",
+    Simplify[ComposeSeries[ephSquaredInEpsj /. j -> jInne, EpsInne]]];
 
 (* This has been derived from Memmesheimer et al. paper in another
    notebook; we should do this here instead *)
@@ -197,15 +196,16 @@ nInxe = SeriesData[x, 0, {1, 0, 3/(-1 + e^2), 0, (-18 + 28*eta + e^2*(-51 + 26*e
  11, 2];
 
 xInne = InverseSeries[nInxe, n];
-rInxe = Simplify[rInne /. n -> nInxe];
-omInxe = Simplify[omInne /. n -> nInxe];
-lInxe = Simplify[lInne /. n -> nInxe];
-ephInxe = Simplify[PowerExpand[Sqrt[ephSquaredInne /. n -> nInxe]]];
-xDotInxe = 
+rInxe = cacheResult["rInxe.m", Simplify[rInne /. n -> nInxe]];
+omInxe = cacheResult["omInxe.m", Simplify[omInne /. n -> nInxe]];
+lInxe = cacheResult["lInxe.m", Simplify[lInne /. n -> nInxe]];
+ephInxe = cacheResult["ephInxe.m",Simplify[PowerExpand[Sqrt[ephSquaredInne /. n -> nInxe]]]];
+xDotInxe = cacheResult["xDotInxe.m",
  Simplify[
   D[xInne, n] nDotInne + 
-    D[xInne, e] eDotInne /. n -> nInxe];
-eDotInxe = Simplify[eDotInne /. n -> nInxe];
+    D[xInne, e] eDotInne /. n -> nInxe]];
+
+eDotInxe = cacheResult["eDotInxe.m", Simplify[eDotInne /. n -> nInxe]];
 
 (* From Arun et al. *)
 xInEpsj = Eps(1+Eps(-5/4+nu/12+2/j)
@@ -228,9 +228,9 @@ etMHminusADM = Eps^2/Sqrt[1-j](1/4+17/4nu)(1-1/j)+
 
 eInEpsj = etADM + etMHminusADM/.nu->eta;
 
-EpsInxe = Simplify[ComposeSeries[EpsInne, nInxe]];
+EpsInxe = cacheResult["EpsInxe.m", Simplify[ComposeSeries[EpsInne, nInxe]]];
 
-jInxe = Simplify[ComposeSeries[jInne, nInxe]];
+jInxe = cacheResult["jInxe.m", Simplify[ComposeSeries[jInne, nInxe]]];
 
 
 
@@ -250,9 +250,15 @@ h22InOrbital1PN = (1/(7 r^2 R))E^(-2 I phi) eta Sqrt[Pi/5] (210 - 11 phiDot^2 r^
 
 h22InOrbital = {h22InOrbital0PN,0,2/3 h22InOrbital1PN} /. {eta -> $eta, R -> 1};
 hAmpPhaseExpr = hamp[t] Exp[I hphase[t]];
-psi4AmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t]];
-psi4DotAmpPhaseExpr = Simplify[D[hAmpPhaseExpr, t, t, t]];
+psi4AmpPhaseExpr = cacheResult["psi4AmpPhaseExpr.m", Simplify[D[hAmpPhaseExpr, t, t]]];
+psi4DotAmpPhaseExpr = cacheResult["psi4DotAmpPhaseExpr.m", Simplify[D[hAmpPhaseExpr, t, t, t]]];
 
+ephInneExpr = cacheResult["ephInneExpr.m", Simplify[Sqrt[Normal[ephSquaredInne]]]];
+ephSquaredInxeExpr = cacheResult["ephSquaredInxeExpr.m", Simplify[Normal[ephInxe^2]]];
+ephSquaredInxeNewtExpr = cacheResult["ephSquaredInxeNewtExpr.m", 
+  Simplify[FirstTerms[ephInxe^2,1]]];
+
+lInneExpr = cacheResult["lInneExpr.m", Simplify[FirstTerms[lInne, 7]]];
 
 neModel = {
   X -> n,
@@ -261,11 +267,13 @@ neModel = {
   Y0 -> e0,
   XDot -> FirstTerms[nDotInne, 5] /. {n -> n[t], e -> e[t]},
   YDot -> FirstTerms[eDotInne, 5] /. {n -> n[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[Sqrt[Normal[ephSquaredInne]]] /. eta -> etaFixed),
-  lInXY -> Simplify[FirstTerms[lInne, 7] /. {eta -> etaFixed}],
+  ephSquaredInXY -> ephInneExpr /. eta -> etaFixed,
+  lInXY -> lInneExpr /. {eta -> etaFixed},
   nInXY -> n,
   rInXY -> Normal[rInne] /. eta -> etaFixed,
   omInXY -> Normal[omInne] /. eta -> etaFixed};
+
+lInxeExpr = cacheResult["lInxeExpr.m", Simplify[FirstTerms[lInxe, 7]]];
 
 xeModel = {
   X -> x,
@@ -274,11 +282,13 @@ xeModel = {
   Y0 -> e0,
   XDot -> FirstTerms[xDotInxe, 5] /. {x -> x[t], e -> e[t]},
   YDot -> FirstTerms[eDotInxe, 5] /. {x -> x[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[Normal[ephInxe^2]] /. eta -> etaFixed),
-  lInXY -> Simplify[FirstTerms[lInxe, 7] /. {eta -> etaFixed}],
+  ephSquaredInXY -> (ephSquaredInxeExpr /. eta -> etaFixed),
+  lInXY -> lInxeExpr /. {eta -> etaFixed},
   nInXY -> Normal[nInxe] /. eta -> etaFixed,
   rInXY -> Normal[rInxe] /. eta -> etaFixed,
   omInXY -> Normal[omInxe] /. eta -> etaFixed};
+
+lInxeNewtExpr = cacheResult["lInxeNewtExpr.m", Simplify[FirstTerms[lInxe, 1]]];
 
 xeNewtModel = {
   X -> x,
@@ -287,13 +297,11 @@ xeNewtModel = {
   Y0 -> e0,
   XDot -> FirstTerms[xDotInxe, 1] /. {x -> x[t], e -> e[t]},
   YDot -> FirstTerms[eDotInxe, 1] /. {x -> x[t], e -> e[t]},
-  ephSquaredInXY -> (Simplify[FirstTerms[ephInxe^2,1]] /. eta -> etaFixed),
-  lInXY -> Simplify[FirstTerms[lInxe, 1] /. {eta -> etaFixed}],
+  ephSquaredInXY -> (ephSquaredInxeNewtExpr /. eta -> etaFixed),
+  lInXY -> lInxeNewtExpr /. {eta -> etaFixed},
   nInXY -> FirstTerms[nInxe,1] /. eta -> etaFixed,
   rInXY -> FirstTerms[rInxe,1] /. eta -> etaFixed,
   omInXY -> FirstTerms[omInxe,1] /. eta -> etaFixed};
-computed = True;
-  ];
 
 EccentricSoln[args___] :=
   (Print["Invalid arguments: ", HoldForm[EccentricSoln[args]]];
