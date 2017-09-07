@@ -112,9 +112,9 @@ planckTaperData[d_List, {{t1_, t2_}, {t3_, t4_}}] :=
     planckTaperFunction[d[[All,1]], {t1, t2}] *
     (1 - planckTaperFunction[d[[All,1]], {t3, t4}]) d[[All,2]]}];
 
-error[msg_String] :=
+error[args___] :=
   Module[{},
-    Print[msg];
+    Print[args];
     Abort[]];
 
 (* Compute a list consisting of f1 for time < t, f2 for time > t+tau, and a
