@@ -21,16 +21,6 @@ protectArguments[f_] :=
 etaOfq[q_] :=
  q/(1 + q)^2;
 
-pnSolnToAssoc[soln_List, q_] :=
-    Join[Association@Table[ToString[var[[1]]] -> var[[2]], {var,soln}],Association["q"->q]];
-
-EccentricPNSolution[params_Association, {t1_, t2_, dt_:1.0}] :=
-  Module[{pnSolnRules},
-    pnSolnRules = EccentricSoln[xeModel, N@etaOfq[params["q"]],
-      {N@params["x0"], N@params["e0"], N@params["l0"], N@params["phi0"]},
-      N@params["t0"], N/@{t1, t2, dt}];
-    pnSolnToAssoc[pnSolnRules, params["q"]]];
-
 timeToMergerFunction[] :=
   Function[{qq, ee, 
   ll}, 391.1958112997977 + 

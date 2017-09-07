@@ -38,6 +38,7 @@ BeginPackage["EccentricIMR`EccentricPN`",
 
 EccentricSoln;
 FirstTerms;
+EccentricPNSolution;
 
 (*******************************************************************)
 (* Eccentric PN models *)
@@ -147,6 +148,13 @@ EccProfileReportCount[] :=
     HoldPattern -> HoldForm /. ((x_ :> y_) :> {y, x}) /. 
     EccProfileCallCount[x_] :> x // TableForm];
 
+pnSolnToAssoc[soln_List, q_] :=
+  Module[{},
+    Block[{$ContextPath = Prepend[$ContextPath, "EccentricIMR`EccentricPNSymbols`"]},
+      Join[Association@Table[ToString[var[[1]]] -> var[[2]], {var,soln}],Association["q"->q]]]];
+
+etaOfq[q_] :=
+ q/(1 + q)^2;
 
 (*******************************************************************)
 (* PN computations *)
@@ -270,6 +278,13 @@ computed = True;
 EccentricSoln[args___] :=
   (Print["Invalid arguments: ", HoldForm[EccentricSoln[args]]];
     StringJoin[ToString[#,InputForm]&/@Riffle[{args},","],"]"];Abort[]);
+
+EccentricPNSolution[params_Association, {t1_, t2_, dt_:1.0}] :=
+  Module[{pnSolnRules},
+    pnSolnRules = EccentricSoln[xeModel, N@etaOfq[params["q"]],
+      {N@params["x0"], N@params["e0"], N@params["l0"], N@params["phi0"]},
+      N@params["t0"], N/@{t1, t2, dt}];
+    pnSolnToAssoc[pnSolnRules, params["q"]]];
 
 EccentricSoln[model1_, eta0_?NumberQ, {x0_Real, y0_Real, l0_Real, phi0_},
               t0_?NumberQ, {t1p_?NumberQ, t2p_?NumberQ, 
