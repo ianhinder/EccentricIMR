@@ -173,6 +173,9 @@ EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_, dt_] :=
  Module[{xFn, xRef, tRef, t, eRef, ttpCal, tPeakEcc, tPeakCirc, hCircShifted, hFn, 
    hPN, tBlendWindow, ePN, lPN, tBlendStart, xPN, tPN},
 
+   If[Complement[{"x","e","l","h"},Keys[pnSoln]] =!= {},
+     error["PN solution does not contain all the required keys.  Only found ", Keys[pnSoln]]];
+
   xFn = pnSoln["x"];
   xPN = $maxPNX;
 
