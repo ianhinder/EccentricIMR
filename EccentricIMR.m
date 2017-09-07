@@ -46,8 +46,7 @@ timeOfPeak[h_List] :=
     Scan[maxFind, a];
     fn = Interpolation[a,InterpolationOrder->8];
     tMax2 = 
-    t /. FindMaximum[{fn[t], {t > tMax - 50, t < tMax + 50}}, {t, 
-      tMax}][[2]];
+    t /. FindMaximum[fn[t], {t, tMax}][[2]];
     tMax2];
 
 protectArguments[shifted];
