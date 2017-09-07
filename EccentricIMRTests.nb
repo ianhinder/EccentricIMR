@@ -141,8 +141,10 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"EccentricIMR`Private`timeToMergerFunction", "[", "]"}], "[", 
+  RowBox[{
+  "EccentricIMR`EccentricIMR`Private`timeToMergerFunction", "[", "]"}], "[", 
   RowBox[{"q", ",", "e", ",", "l"}], "]"}]], "VerificationTest",
+ CellChangeTimes->{3.713794359787929*^9},
  CellID->1038279244],
 
 Cell[BoxData[
@@ -375,7 +377,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0314210000000017`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+031318999999999875`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -399,8 +401,8 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0314210000000017`\", \"\\\"s\\\"\
-\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
+          "\!\(\*TagBox[TemplateBox[List[\"0.031318999999999875`\", \"\\\"s\\\
+\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
         BaseStyle -> {FontFamily -> "Helvetica", FontWeight -> "Bold"}, 
@@ -412,7 +414,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->373369527],
+ CellID->439304692],
 
 Cell[BoxData[
  PaneBox[
@@ -689,7 +691,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->274423755]
+ CellID->345180058]
 }, Open  ]]
 }, Open  ]],
 
@@ -703,8 +705,9 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"tPeakFound", "=", 
   RowBox[{
-  "EccentricIMR`Private`timeOfPeak", "[", "gaussian", 
+  "EccentricIMR`EccentricIMR`Private`timeOfPeak", "[", "gaussian", 
    "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794364492305*^9},
  CellID->1483987478],
 
 Cell[BoxData["0.5000299669236011`"], "ExpectedOutput",
@@ -911,7 +914,7 @@ Rational[2, 3]]]]\)",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-04303400000000224`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+03841800000000006`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -935,7 +938,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.04303400000000224`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.03841800000000006`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -948,7 +951,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1592660176],
+ CellID->1087904259],
 
 Cell[BoxData[
  PaneBox[
@@ -1227,7 +1230,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1603401824]
+ CellID->731110455]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1238,8 +1241,9 @@ Cell[BoxData[
 
 Cell[BoxData["3.307639884209124`*^-8"], "Output",
  CellChangeTimes->{3.713279342838127*^9, 3.713279585797941*^9, 
-  3.7135151478481894`*^9},
- CellID->1749653412]
+  3.7135151478481894`*^9, 3.713794219534194*^9, 3.7137943125913973`*^9, 
+  3.7137944705659027`*^9, 3.713794509913394*^9},
+ CellID->2019472698]
 }, Open  ]]
 }, Open  ]],
 
@@ -1252,8 +1256,9 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"cosShifted", "=", 
-  RowBox[{"EccentricIMR`Private`shifted", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`shifted", "[", 
    RowBox[{"cos", ",", "0.3"}], "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794368450986*^9},
  CellID->17850417],
 
 Cell[BoxData[
@@ -1507,7 +1512,7 @@ RowBox[{\"0.3`\", \",\", \"1.`\"}], \"}\"}], \",\", RowBox[{\"\[LeftSkeleton]\
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0002060000000021489`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+00012699999999554734`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -1531,9 +1536,9 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0002060000000021489`\", \
-\"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
-Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
+          "\!\(\*TagBox[TemplateBox[List[\"0.00012699999999554734`\", \"\\\"s\
+\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
+Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
         BaseStyle -> {FontFamily -> "Helvetica", FontWeight -> "Bold"}, 
         Spacings -> {{2 -> 0.5}, Automatic}]},
@@ -1544,7 +1549,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->931317113],
+ CellID->298594451],
 
 Cell[BoxData[
  PaneBox[
@@ -1773,6 +1778,7 @@ Cell[BoxData[
             
             GridBoxAlignment->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
+            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
            "Grid"], True->
@@ -1823,7 +1829,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1785898855]
+ CellID->1955138565]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1891,8 +1897,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279343769705*^9, 3.713279586681581*^9, 
-  3.713515148709255*^9},
- CellID->223121866]
+  3.713515148709255*^9, 3.713794220481594*^9, 3.713794314146154*^9, 
+  3.7137944713931837`*^9, 3.71379451073263*^9},
+ CellID->1366579208]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2110,7 +2117,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0001049999999978013`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+00010500000000135401`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -2134,9 +2141,9 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0001049999999978013`\", \
-\"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
-Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
+          "\!\(\*TagBox[TemplateBox[List[\"0.00010500000000135401`\", \"\\\"s\
+\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
+Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
         BaseStyle -> {FontFamily -> "Helvetica", FontWeight -> "Bold"}, 
         Spacings -> {{2 -> 0.5}, Automatic}]},
@@ -2147,7 +2154,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->502754200],
+ CellID->759144191],
 
 Cell[BoxData[
  PaneBox[
@@ -2218,7 +2225,6 @@ Cell[BoxData[
                RawBoxes[
                 FEPrivate`FrontEndResource[
                 "MUnitStrings", "AddMessages-Tooltip"]]], "Tooltip"]& ],
-            
             Appearance->FEPrivate`FrontEndResource[
              "MUnitExpressions", "ButtonAppearances"],
             
@@ -2321,7 +2327,6 @@ Cell[BoxData[
                  "MUnitStrings", "SameTest-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
                  MUnit`InsertOptionRule["SameTest"]], 
-                
                 DynamicBox[FEPrivate`FrontEndResource[
                  "MUnitStrings", "TestID-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
@@ -2427,7 +2432,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1589172102]
+ CellID->736071310]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2441,8 +2446,9 @@ Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"0.`", ",", "1.`"}], "}"}]], "Output",
  CellChangeTimes->{3.71327934450618*^9, 3.7132795876381283`*^9, 
-  3.7135151496510468`*^9},
- CellID->961400575]
+  3.7135151496510468`*^9, 3.713794221234643*^9, 3.713794314903883*^9, 
+  3.71379447226374*^9, 3.7137945116546173`*^9},
+ CellID->1644700450]
 }, Open  ]]
 }, Open  ]],
 
@@ -2503,8 +2509,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279344555003*^9, 3.713279587679652*^9, 
-  3.71351514968937*^9},
- CellID->592503997]
+  3.71351514968937*^9, 3.7137942212722883`*^9, 3.713794314961226*^9, 
+  3.713794472311314*^9, 3.7137945117067003`*^9},
+ CellID->70958966]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2560,8 +2567,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279344768415*^9, 3.7132795877123127`*^9, 
-  3.713515149718874*^9},
- CellID->333006440]
+  3.713515149718874*^9, 3.71379422130167*^9, 3.7137943149862623`*^9, 
+  3.7137944723382187`*^9, 3.713794511731552*^9},
+ CellID->753917477]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2569,7 +2577,9 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"phaseData", "=", 
   RowBox[{
-  "EccentricIMR`Private`phase", "[", "hData", "]"}]}]], "VerificationTest",
+  "EccentricIMR`EccentricIMR`Private`phase", "[", "hData", 
+   "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794377892707*^9},
  CellID->2020041345],
 
 Cell[BoxData[
@@ -2759,6 +2769,7 @@ Rational[2, 3]]]]\)",
        TagBox[GridBox[{
           {
            StyleBox[
+            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "ExpectedOutput-Detail"]],
             StripOnInput->False,
@@ -2819,7 +2830,7 @@ Rational[2, 3]]]]\)",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-11593200000000081`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+11025300000000016`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -2843,7 +2854,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.11593200000000081`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.11025300000000016`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -2856,7 +2867,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->496852998],
+ CellID->937518639],
 
 Cell[BoxData[
  PaneBox[
@@ -2930,7 +2941,6 @@ Cell[BoxData[
             
             Appearance->FEPrivate`FrontEndResource[
              "MUnitExpressions", "ButtonAppearances"],
-            
             ButtonFunction:>
              Block[{$ContextPath}, Needs["MUnit`"]; MUnit`addMessages[]],
             Evaluator->Automatic,
@@ -3106,6 +3116,7 @@ Cell[BoxData[
                FontColor->RGBColor[0.9059, 0.3451, 0.102]]}
             },
             AutoDelete->False,
+            
             GridBoxAlignment->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
             
@@ -3135,7 +3146,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1191917850]
+ CellID->788247634]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3259,8 +3270,9 @@ Pg==
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279345833746*^9, 3.7132795887079153`*^9, 
-  3.713515150794351*^9},
- CellID->835845734]
+  3.713515150794351*^9, 3.713794222615973*^9, 3.7137943170157948`*^9, 
+  3.713794381978801*^9, 3.71379447314511*^9, 3.713794512768004*^9},
+ CellID->251366295]
 }, Open  ]]
 }, Open  ]],
 
@@ -3274,10 +3286,12 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"dcos", "=", 
   RowBox[{
-   RowBox[{"EccentricIMR`Private`nderivative", "[", "1", "]"}], "[", 
+   RowBox[{"EccentricIMR`EccentricIMR`Private`nderivative", "[", "1", "]"}], 
+   "[", 
    RowBox[{"cos", ",", 
     RowBox[{"DifferenceOrder", "\[Rule]", "8"}]}], 
    "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794385091152*^9},
  CellID->1791028488],
 
 Cell[BoxData[
@@ -3539,7 +3553,7 @@ RowBox[{\"\[LeftSkeleton]\", \"22\", \"\[RightSkeleton]\"}]}]}], \"}\"}]}], \
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0005020000000008906`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+0004859999999986542`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -3563,7 +3577,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0005020000000008906`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.0004859999999986542`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -3576,7 +3590,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1368716311],
+ CellID->612986416],
 
 Cell[BoxData[
  PaneBox[
@@ -3805,7 +3819,6 @@ Cell[BoxData[
             
             GridBoxAlignment->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
-            
             GridBoxItemSize->{
              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
            "Grid"], True->
@@ -3856,7 +3869,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->170212313]
+ CellID->983639053]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3929,8 +3942,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279346586054*^9, 3.713279589664386*^9, 
-  3.7135151516340218`*^9},
- CellID->310126787]
+  3.7135151516340218`*^9, 3.7137942234933357`*^9, 3.713794318037614*^9, 
+  3.71379439031563*^9, 3.713794474074049*^9, 3.713794513586903*^9},
+ CellID->692449165]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3995,8 +4009,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279346669229*^9, 3.713279589764275*^9, 
-  3.713515151785902*^9},
- CellID->358097840]
+  3.713515151785902*^9, 3.7137942235687637`*^9, 3.7137943181230087`*^9, 
+  3.713794390951511*^9, 3.7137944741486*^9, 3.7137945136539993`*^9},
+ CellID->779233062]
 }, Open  ]]
 }, Open  ]],
 
@@ -4010,7 +4025,9 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"testFreq", "=", 
   RowBox[{
-  "EccentricIMR`Private`frequency", "[", "hData", "]"}]}]], "VerificationTest",
+  "EccentricIMR`EccentricIMR`Private`frequency", "[", "hData", 
+   "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.7137943939807262`*^9},
  CellID->1819286663],
 
 Cell[BoxData[
@@ -4264,7 +4281,7 @@ RowBox[{\"\[LeftSkeleton]\", \"19\", \"\[RightSkeleton]\"}]}], \"}\"}]}], \"}\
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0003700000000002035`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+0003679999999981476`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -4288,7 +4305,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0003700000000002035`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.0003679999999981476`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -4301,7 +4318,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1301217986],
+ CellID->1214793628],
 
 Cell[BoxData[
  PaneBox[
@@ -4342,7 +4359,6 @@ Cell[BoxData[
                    DynamicBox[FEPrivate`FrontEndResource[
                     "MUnitExpressions", "Add"]], 
                    StyleBox[
-                    
                     DynamicBox[FEPrivate`FrontEndResource[
                     "MUnitStrings", "AddMessages-Label"]], "ButtonText",
                     StripOnInput->False,
@@ -4581,7 +4597,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1744713301]
+ CellID->909473767]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4674,8 +4690,9 @@ eCsJzBN5rnGYJaHaqXWmzozAX8z0JtRqEhw33Nk1bUHgf/b5Sg0=
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279347520368*^9, 3.7132795906906977`*^9, 
-  3.7135151525973377`*^9},
- CellID->1654733769]
+  3.7135151525973377`*^9, 3.713794224588841*^9, 3.71379431905884*^9, 
+  3.713794400510872*^9, 3.7137944749435577`*^9, 3.713794514548678*^9},
+ CellID->1884486270]
 }, Open  ]]
 }, Open  ]],
 
@@ -4702,16 +4719,18 @@ Cell[BoxData[
     ",", "3.9`", ",", "4.2`", ",", "4.5`", ",", "4.8`", ",", "5.1`", ",", 
    "5.3999999999999995`", ",", "5.7`", ",", "6.`"}], "}"}]], "Output",
  CellChangeTimes->{3.713279063188858*^9, 3.71327934757244*^9, 
-  3.713279590732664*^9, 3.713515152640663*^9},
- CellID->1197226933]
+  3.713279590732664*^9, 3.713515152640663*^9, 3.713794224621545*^9, 
+  3.713794319190362*^9, 3.713794475063943*^9, 3.713794514574987*^9},
+ CellID->1471913934]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"testRes", "=", 
-  RowBox[{"EccentricIMR`Private`resampled", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`resampled", "[", 
    RowBox[{"cos", ",", "resTimes"}], "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794404231784*^9},
  CellID->1814555298],
 
 Cell[BoxData[
@@ -4840,6 +4859,7 @@ Cell[BoxData[
        TagBox[GridBox[{
           {
            StyleBox[
+            
             DynamicBox[FEPrivate`FrontEndResource[
              "MUnitStrings", "TestID-Detail"]],
             StripOnInput->False,
@@ -4990,7 +5010,7 @@ Rational[2, 3]]]]\)",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0002610000000018431`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+0002599999999937097`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -5014,7 +5034,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0002610000000018431`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.0002599999999937097`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -5027,7 +5047,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->2018774188],
+ CellID->1593358945],
 
 Cell[BoxData[
  PaneBox[
@@ -5307,7 +5327,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1443638763]
+ CellID->462710525]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5515,8 +5535,9 @@ rQY37CHuEXWw1Z1/yNz/iT3EPDEHsykcy/m2vYL6V8KB5byexZZd7+wB6k+S
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279348402989*^9, 3.713279591521236*^9, 
-  3.713515153536175*^9},
- CellID->966445935]
+  3.713515153536175*^9, 3.713794225484838*^9, 3.71379431994319*^9, 
+  3.7137944070758944`*^9, 3.7137944758813267`*^9, 3.713794515470299*^9},
+ CellID->737507888]
 }, Open  ]]
 }, Open  ]],
 
@@ -5537,12 +5558,13 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"testTapFun", "=", 
-  RowBox[{"EccentricIMR`Private`planckTaperFunction", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`planckTaperFunction", "[", 
    RowBox[{"tapTimes", ",", 
     RowBox[{"{", 
      RowBox[{
       RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}]}], 
    "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.7137944101134253`*^9},
  CellID->1282918559],
 
 Cell[BoxData[
@@ -5577,7 +5599,6 @@ Cell[BoxData[
       TagBox[GridBox[{
          {
           StyleBox[
-           
            DynamicBox[FEPrivate`FrontEndResource[
             "MUnitStrings", "Success-TestSuccess"],
             ImageSizeCache->{57., {1., 11.}}],
@@ -5781,7 +5802,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0006099999999982231`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+0006189999999968165`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -5805,7 +5826,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0006099999999982231`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.0006189999999968165`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -5818,7 +5839,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1638007284],
+ CellID->19463132],
 
 Cell[BoxData[
  PaneBox[
@@ -5889,6 +5910,7 @@ Cell[BoxData[
                RawBoxes[
                 FEPrivate`FrontEndResource[
                 "MUnitStrings", "AddMessages-Tooltip"]]], "Tooltip"]& ],
+            
             Appearance->FEPrivate`FrontEndResource[
              "MUnitExpressions", "ButtonAppearances"],
             
@@ -5991,6 +6013,7 @@ Cell[BoxData[
                  "MUnitStrings", "SameTest-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
                  MUnit`InsertOptionRule["SameTest"]], 
+                
                 DynamicBox[FEPrivate`FrontEndResource[
                  "MUnitStrings", "TestID-Label"]]:>
                 Block[{$ContextPath}, Needs["MUnit`"]; 
@@ -6096,7 +6119,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1395551295]
+ CellID->699345180]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6166,8 +6189,9 @@ O5p5HHA+ANnEVwY=
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279349160708*^9, 3.713279592400527*^9, 
-  3.713515154439959*^9},
- CellID->214222531]
+  3.713515154439959*^9, 3.713794226432267*^9, 3.713794321005455*^9, 
+  3.7137944140671883`*^9, 3.7137944767465*^9, 3.713794516247964*^9},
+ CellID->716440229]
 }, Open  ]]
 }, Open  ]],
 
@@ -6210,16 +6234,19 @@ Cell[BoxData[
      FractionBox[
       RowBox[{"7", " ", "\[Pi]"}], "4"]}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{3.713279079252817*^9, 3.7132793492083282`*^9, 
-  3.7132795924515257`*^9, 3.713515154485794*^9},
- CellID->1255486145]
+  3.7132795924515257`*^9, 3.713515154485794*^9, 3.713794226586815*^9, 
+  3.7137943210318193`*^9, 3.713794416448255*^9, 3.71379447679799*^9, 
+  3.7137945162963753`*^9},
+ CellID->270120074]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"testTapData", "=", 
-  RowBox[{"EccentricIMR`Private`planckTaperData", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`planckTaperData", "[", 
    RowBox[{"cos", ",", "tapDataTimes"}], "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.7137944190894747`*^9},
  CellID->520972179],
 
 Cell[BoxData[
@@ -6474,7 +6501,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-00044899999999969964`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+00041099999999616443`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -6498,7 +6525,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.00044899999999969964`\", \"\\\"s\
+          "\!\(\*TagBox[TemplateBox[List[\"0.00041099999999616443`\", \"\\\"s\
 \\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -6511,7 +6538,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1928807240],
+ CellID->127653960],
 
 Cell[BoxData[
  PaneBox[
@@ -6791,7 +6818,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1197631215]
+ CellID->143942367]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6899,8 +6926,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279349995729*^9, 3.7132795932250357`*^9, 
-  3.713515155285324*^9},
- CellID->223607174]
+  3.713515155285324*^9, 3.7137942273114347`*^9, 3.713794321874807*^9, 
+  3.7137944218713017`*^9, 3.7137944775541058`*^9, 3.713794517132676*^9},
+ CellID->1172775647]
 }, Open  ]]
 }, Open  ]],
 
@@ -6926,9 +6954,10 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"testBlend", "=", 
-  RowBox[{"EccentricIMR`Private`blend", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`blend", "[", 
    RowBox[{"cos", ",", "sin", ",", "blendtau", ",", "blendt"}], 
    "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.7137944250011*^9},
  CellID->471328784],
 
 Cell[BoxData[
@@ -7186,7 +7215,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-0010230000000035488`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+0010269999999970025`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -7210,7 +7239,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.0010230000000035488`\", \
+          "\!\(\*TagBox[TemplateBox[List[\"0.0010269999999970025`\", \
 \"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
 Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
@@ -7223,7 +7252,7 @@ Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->69391168],
+ CellID->1235386963],
 
 Cell[BoxData[
  PaneBox[
@@ -7328,7 +7357,6 @@ Cell[BoxData[
                     
                     GridBoxAlignment->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Center}}},
-                    
                     GridBoxItemSize->{
                     "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
                     "Grid"], True->
@@ -7368,6 +7396,7 @@ Cell[BoxData[
                    RawBoxes[
                     FEPrivate`FrontEndResource[
                     "MUnitStrings", "AddOptions-Tooltip"]]], "Tooltip"]& ],
+                
                 Appearance->FEPrivate`FrontEndResource[
                  "MUnitExpressions", "ButtonAppearances"],
                 
@@ -7502,7 +7531,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->173740255]
+ CellID->1276787945]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7592,8 +7621,9 @@ Cell[BoxData[
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.7132793507144547`*^9, 3.713279594135599*^9, 
-  3.713515156225464*^9},
- CellID->1622189512]
+  3.713515156225464*^9, 3.713794228196402*^9, 3.7137943226775923`*^9, 
+  3.713794427828464*^9, 3.713794478466586*^9, 3.7137945179501743`*^9},
+ CellID->1318390791]
 }, Open  ]]
 }, Open  ]],
 
@@ -7665,8 +7695,9 @@ sE9PA4Fr9q0TP0Tf+3QOqv+m/YquGRf67Q/Znz0DAnfs/xnvNjt7e8N+iHkP
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279350788596*^9, 3.713279594216852*^9, 
-  3.713515156276103*^9},
- CellID->1834229519]
+  3.713515156276103*^9, 3.713794228266629*^9, 3.7137943227246*^9, 
+  3.7137944313762503`*^9, 3.713794478548505*^9, 3.7137945180329733`*^9},
+ CellID->457754591]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7674,10 +7705,11 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"ListLinePlot", "[", 
   RowBox[{
-   RowBox[{"EccentricIMR`Private`frequency", "/@", 
+   RowBox[{"EccentricIMR`EccentricIMR`Private`frequency", "/@", 
     RowBox[{"{", 
      RowBox[{"hData", ",", "hData2"}], "}"}]}], ",", 
    RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.713794434420623*^9},
  CellID->1619461289],
 
 Cell[BoxData[
@@ -7734,8 +7766,9 @@ Pg4AbIKO5w==
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279350814272*^9, 3.713279594246366*^9, 
-  3.7135151563038263`*^9},
- CellID->767773148]
+  3.7135151563038263`*^9, 3.713794228291408*^9, 3.71379432280719*^9, 
+  3.7137944350611153`*^9, 3.713794478576997*^9, 3.7137945181666927`*^9},
+ CellID->1194987383]
 }, Open  ]],
 
 Cell[BoxData[
@@ -7749,11 +7782,12 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"testBlendhs", "=", 
-  RowBox[{"EccentricIMR`Private`blendWaveforms", "[", 
+  RowBox[{"EccentricIMR`EccentricIMR`Private`blendWaveforms", "[", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{"hData", ",", "hData2"}], "}"}], ",", "blendhsts"}], 
    "]"}]}]], "VerificationTest",
+ CellChangeTimes->{3.713794438340064*^9},
  CellID->122897954],
 
 Cell[BoxData[
@@ -8043,7 +8077,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"0.\
-021675000000001887`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+02203699999999742`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -8067,9 +8101,9 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"0.021675000000001887`\", \"\\\"s\\\
-\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
-Function[Short[Slot[1], Rational[2, 3]]]]\)", 
+          "\!\(\*TagBox[TemplateBox[List[\"0.02203699999999742`\", \
+\"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
+Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
         BaseStyle -> {FontFamily -> "Helvetica", FontWeight -> "Bold"}, 
         Spacings -> {{2 -> 0.5}, Automatic}]},
@@ -8080,7 +8114,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->1881547260],
+ CellID->885879337],
 
 Cell[BoxData[
  PaneBox[
@@ -8360,7 +8394,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1468096745]
+ CellID->469892308]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8368,13 +8402,14 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"ListLinePlot", "[", 
   RowBox[{
-   RowBox[{"EccentricIMR`Private`frequency", "/@", 
+   RowBox[{"EccentricIMR`EccentricIMR`Private`frequency", "/@", 
     RowBox[{"{", 
      RowBox[{"hData", ",", "hData2", ",", "testBlendhs"}], "}"}]}], ",", 
    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
    RowBox[{"GridLines", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"blendhsts", ",", "None"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{3.713794443595291*^9},
  CellID->78341471],
 
 Cell[BoxData[
@@ -8443,8 +8478,9 @@ Pg4AbIKO5w==
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279351690651*^9, 3.713279595239355*^9, 
-  3.713515157262238*^9},
- CellID->1862372832]
+  3.713515157262238*^9, 3.7137942291079197`*^9, 3.713794323727633*^9, 
+  3.713794444116515*^9, 3.713794479331162*^9, 3.71379451895207*^9},
+ CellID->1182650537]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8524,8 +8560,9 @@ dA==
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
  CellChangeTimes->{3.713279351771152*^9, 3.713279595308515*^9, 
-  3.71351515732351*^9},
- CellID->1326032399]
+  3.71351515732351*^9, 3.713794229261827*^9, 3.713794323779945*^9, 
+  3.713794446500024*^9, 3.713794479405031*^9, 3.713794519018605*^9},
+ CellID->1846422374]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8533,13 +8570,14 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"ListLinePlot", "[", 
   RowBox[{
-   RowBox[{"EccentricIMR`Private`phase", "/@", 
+   RowBox[{"EccentricIMR`EccentricIMR`Private`phase", "/@", 
     RowBox[{"{", 
      RowBox[{"hData", ",", "hData2", ",", "testBlendhs"}], "}"}]}], ",", 
    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
    RowBox[{"GridLines", "\[Rule]", 
     RowBox[{"{", 
      RowBox[{"blendhsts", ",", "None"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{3.7137944505884867`*^9},
  CellID->19814996],
 
 Cell[BoxData[
@@ -8607,9 +8645,11 @@ YL3pxDsvofpvQs3/bH/2DAjcsZ+jcV62v/o31LwHUPOYHCDqH9pLBBx5vkOM
      Scaled[0.02], 
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
- CellChangeTimes->{3.713279351830229*^9, 3.71327959538048*^9, 
-  3.713515157392992*^9},
- CellID->41241427]
+ CellChangeTimes->{
+  3.713279351830229*^9, 3.71327959538048*^9, 3.713515157392992*^9, 
+   3.713794229338113*^9, 3.713794323857759*^9, {3.713794451142362*^9, 
+   3.7137944795284567`*^9}, 3.71379451910002*^9},
+ CellID->1682140668]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -8692,9 +8732,11 @@ sE9PA4Fr9q0TP0Tf+3QOqv+m/YquGRf67Q/Znz0DAnfs/xnvNjt7e8N+iHkP
      Scaled[0.05], 
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
- CellChangeTimes->{3.713279351893279*^9, 3.713279595447317*^9, 
-  3.7135151574479513`*^9},
- CellID->1654929255]
+ CellChangeTimes->{
+  3.713279351893279*^9, 3.713279595447317*^9, 3.7135151574479513`*^9, 
+   3.713794229397088*^9, 3.713794323975658*^9, {3.713794453825029*^9, 
+   3.7137944795873203`*^9}, 3.713794519249258*^9},
+ CellID->115994321]
 }, Open  ]]
 }, Open  ]],
 
@@ -9095,7 +9137,7 @@ RowBox[{\"{\", RowBox[{\"\[LeftSkeleton]\", \"1\", \"\[RightSkeleton]\"}], \
             FontColor->RGBColor[0.458824, 0.458824, 0.458824]], 
            
            StyleBox["\<\"\\!\\(\\*TagBox[TemplateBox[List[\\\"1.\
-8524300000000018`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
+718796000000001`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \\\"s\\\", \
 \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", Rule[SyntaxForm, Mod]], \
 Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
             StripOnInput->False,
@@ -9119,9 +9161,9 @@ Function[Short[Slot[1], Rational[2, 3]]]]\\)\"\>",
              "MUnitStrings", "CPUTimeUsed-Detail"]]], 
            RGBColor[0.458824, 0.458824, 0.458824]], 
           Style[
-          "\!\(\*TagBox[TemplateBox[List[\"1.8524300000000018`\", \"\\\"s\\\"\
-\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, Mod]], \
-Function[Short[Slot[1], Rational[2, 3]]]]\)", 
+          "\!\(\*TagBox[TemplateBox[List[\"1.718796000000001`\", \
+\"\\\"s\\\"\", \"s\", \"\\\"Seconds\\\"\"], \"Quantity\", Rule[SyntaxForm, \
+Mod]], Function[Short[Slot[1], Rational[2, 3]]]]\)", 
            RGBColor[0.14902, 0.14902, 0.14902]]}}, 
         BaseStyle -> {FontFamily -> "Helvetica", FontWeight -> "Bold"}, 
         Spacings -> {{2 -> 0.5}, Automatic}]},
@@ -9132,7 +9174,7 @@ Function[Short[Slot[1], Rational[2, 3]]]]\)",
     GridBoxItemSize->{"Columns" -> {{All}}, "Rows" -> {{All}}}],
    "Grid"],
   ImageSize->Full]], "TestSuccess",
- CellID->187792841],
+ CellID->1748885218],
 
 Cell[BoxData[
  PaneBox[
@@ -9412,7 +9454,7 @@ Cell[BoxData[
     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
    "Grid"],
   ImageSize->Full]], "BottomCell",
- CellID->1580801244]
+ CellID->905182437]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9739,9 +9781,11 @@ CNpC/idFRcviz11/t5D/SeEzMXK57ukt5H9SPDb+qrjcyUz//wCNUFQo
      Scaled[0.05], 
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
- CellChangeTimes->{3.713279354158416*^9, 3.713279519234033*^9, 
-  3.71327959749157*^9, 3.713515159504696*^9},
- CellID->2006310871]
+ CellChangeTimes->{
+  3.713279354158416*^9, 3.713279519234033*^9, 3.71327959749157*^9, 
+   3.713515159504696*^9, 3.713794231822441*^9, 3.713794326270174*^9, {
+   3.7137944625668287`*^9, 3.7137944813886223`*^9}, 3.7137945211996737`*^9},
+ CellID->627063311]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -10054,9 +10098,252 @@ WrCVs4n8F4ac8svWnvEbyX/S9/0h61x60QbyXxgm7Br440SvDeS/MCy/4GRx
      Scaled[0.02], 
      Scaled[0.05]}},
   Ticks->{Automatic, Automatic}]], "Output",
- CellChangeTimes->{3.713279354210432*^9, 3.713279520247924*^9, 
-  3.713279597545341*^9, 3.7135151595591583`*^9},
- CellID->278583703]
+ CellChangeTimes->{
+  3.713279354210432*^9, 3.713279520247924*^9, 3.713279597545341*^9, 
+   3.7135151595591583`*^9, 3.713794231880355*^9, 3.7137943263276377`*^9, {
+   3.713794463592605*^9, 3.7137944814463797`*^9}, 3.713794521255906*^9},
+ CellID->1350812148,ImageCache->GraphicsData["CompressedBitmap", "\<\
+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
+\
+\>"]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -10612,10 +10899,10 @@ DockedCells->{
               DynamicBox[
                ToBoxes[
                 
-                MUnit`Palette`Private`resultColorBar$$[{373369527, 1592660176,
-                  931317113, 502754200, 496852998, 1368716311, 1301217986, 
-                 2018774188, 1638007284, 1928807240, 69391168, 1881547260, 
-                 187792841}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
+                MUnit`Palette`Private`resultColorBar$$[{439304692, 1087904259,
+                  298594451, 759144191, 937518639, 612986416, 1214793628, 
+                 1593358945, 19463132, 127653960, 1235386963, 885879337, 
+                 1748885218}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
                  13}, {}, {}, {}, 250, 12], StandardForm]], 
               ActionMenuBox[
                PaneSelectorBox[{False -> DynamicBox[
