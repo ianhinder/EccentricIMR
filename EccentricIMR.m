@@ -5,11 +5,18 @@ BeginPackage["EccentricIMR`EccentricIMR`",
 EccentricIMRWaveform;
 EccentricPNSolution;
 
+$EccentricIMRInvalidArguments;
+
 Begin["`Private`"];
 
 $maxPNX = 0.11;
 $blendStartX = 0.12;
 $circularisationTime = -30;
+
+protectArguments[f_] :=
+  (f[args___] :=
+  ($EccentricIMRInvalidArguments={args};
+    Print[f, ": Error: invalid arguments: ", Short[{args}]]; Abort[]));
 
 etaOfq[q_] :=
  q/(1 + q)^2;
@@ -37,6 +44,8 @@ timeToMergerFunction[] :=
   1.154966280839567*qq*
    Cos[1.0227481831786127 + ll]];
 
+protectArguments[timeOfPeak];
+
 timeOfPeak[h_List] :=
   Module[{d, tMax, fMax, l, maxFind, fn, t1, t2, t, tMax2},
     a = Transpose[{h[[All,1]], Abs[h[[All,2]]]}];
@@ -50,6 +59,8 @@ timeOfPeak[h_List] :=
     t /. FindMaximum[{fn[t], {t > tMax - 50, t < tMax + 50}}, {t, 
       tMax}][[2]];
     tMax2];
+
+protectArguments[shifted];
 
 shifted[d_List, delta_?NumericQ] :=
   Transpose[{d[[All,1]] + delta, d[[All,2]]}];
@@ -68,6 +79,8 @@ unwrapPhaseVectorInt := unwrapPhaseVectorInt = Compile[{{data, _Real, 1}},
   Join[data[[{1}]], data[[2 ;; -1]] + cumulcorr]
  ], CompilationTarget -> "C", RuntimeOptions -> "Speed"];
 
+protectArguments[unwrapPhaseVector];
+
 unwrapPhaseVector[data_List] :=
   Switch[Length[data],
     0, {},
@@ -81,16 +94,25 @@ nderivative[derivs__][d_List, opts___] :=
   deriv = NDSolve`FiniteDifferenceDerivative[Derivative[derivs], grid, data, opts];
   Transpose[{grid, deriv}]];
 
+
+protectArguments[frequency];
+
 frequency[d_List] :=
   nderivative[1][phase[d]];
 
+protectArguments[phase];
+
 phase[d_List] :=
   Transpose[{d[[All,1]], unwrapPhaseVector[Arg[d[[All,2]]]]}]
+
+protectArguments[resampled];
 
 resampled[d1_List, times_List] :=
   Module[{f},
     f = Interpolation[d1, InterpolationOrder -> 8];
     Table[{t, f[t]}, {t, times}]];
+
+protectArguments[planckTaperFunction];
 
 planckTaperFunction[coords_List, {t1_, t2_}] :=
   Module[{f},
@@ -104,6 +126,8 @@ planckTaperFunction[coords_List, {t1_, t2_}] :=
     SetAttributes[f, {Listable, NumericFunction}];
     f[coords]];
 
+protectArguments[planckTaperData];
+
 planckTaperData[d_List, {t1_, t2_}] :=
   Transpose[{d[[All,1]],planckTaperCoords[d[[All,1]], {t1, t2}] d[[All,2]]}];
 
@@ -116,6 +140,8 @@ error[args___] :=
   Module[{},
     Print[args];
     Abort[]];
+
+protectArguments[blend];
 
 (* Compute a list consisting of f1 for time < t, f2 for time > t+tau, and a
    Planck blend of the two for intermediate times *)
@@ -145,6 +171,8 @@ blend[f1_List, f2_List, tau_?NumericQ, t_?NumericQ] :=
       If[tt <= t1Max, g1Fn[tt], 0.] + 
       If[tt >= t2Min, g2Fn[tt], 0.]}, {tt, ts}]];
 
+protectArguments[blendWaveforms];
+
 blendWaveforms[{h1_List, h2_List}, {t1_, t2_}] := 
  Module[{freqBlend, ampBlend, ampBlendRes, freqBlendFn, phiBlendFn, 
    phiBlend, hBlend, phiFn, tPhi},
@@ -161,6 +189,8 @@ blendWaveforms[{h1_List, h2_List}, {t1_, t2_}] :=
   phiBlend = 
     Table[{t, phiBlendFn[t]}, {t, freqBlend[[All,1]]}];
   hBlend = Transpose[{ampBlendRes[[All,1]], ampBlendRes[[All,2]] Exp[I phiBlend[[All,2]]]}]];
+
+protectArguments[EccentricIMRWaveform];
 
 EccentricIMRWaveform[params_Association, {t1_, t2_, dt_:1.0}] :=
   Module[{pnSoln, hCirc, ttm},
