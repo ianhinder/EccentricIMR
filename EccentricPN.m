@@ -157,6 +157,25 @@ pnSolnToAssoc[soln_List, q_] :=
 etaOfq[q_] :=
  q/(1 + q)^2;
 
+$cacheDir = FileNameJoin[{FileNameDrop[FindFile["EccentricIMR`EccentricPN`"],-1],
+  "ExpressionCache"}];
+
+SetAttributes[cacheResult, HoldAll];
+cacheResult[filep_,expr_] :=
+  If[file === None,
+    expr,
+    With[{file = FileNameJoin[{$cacheDir, filep}]},
+      If[FileExistsQ[file], Block[{$ContextPath = Prepend[$ContextPath, "EccentricIMR`EccentricPNSymbols`"]}, (*Print["Using cached ", filep]; *)Get[file]], 
+        (* else *)
+        With[{result = expr},
+          (* Print["Computed ", filep];  *)
+          If[!DirectoryQ[FileNameDrop[file,-1]],
+            CreateDirectory[FileNameDrop[file,-1],CreateIntermediateDirectories->True]];
+          Module[{tempFile = file<>"."<>ToString[$KernelID]<>".tmp"},
+            Put[result, tempFile];
+            RenameFile[tempFile, file]];
+          result]]]];
+
 (*******************************************************************)
 (* PN computations *)
 (*******************************************************************)
