@@ -1,7 +1,8 @@
 
-BeginPackage["EccentricIMR`EccentricPN`", 
-  {"EccentricIMR`EccentricPNSymbols`", "EccentricIMR`KoenigsdoerfferAndGopakumar`",
-   "EccentricIMR`MemmesheimerEtAl`", "EccentricIMR`Kappas`"}];
+BeginPackage["EccentricIMR`EccentricPN`"];
+
+Needs/@{"EccentricIMR`EccentricPNSymbols`", "EccentricIMR`KoenigsdoerfferAndGopakumar`",
+  "EccentricIMR`MemmesheimerEtAl`", "EccentricIMR`Kappas`"};
 
 (* TODO:
 
@@ -37,7 +38,7 @@ BeginPackage["EccentricIMR`EccentricPN`",
 (*******************************************************************)
 
 EccentricSoln;
-FirstTerms;
+(* FirstTerms; *)
 EccentricPNSolution;
 
 (*******************************************************************)
@@ -52,19 +53,19 @@ xeNewtModel;
 (* PN expressions *)
 (*******************************************************************)
 
-ephSquaredInne;
-nInxe;
-xInne;
-rInxe;
-omInxe;
-lInxe;
-ephInxe;
-xDotInxe;
-eDotInxe;
-xInEpsj;
-eInEpsj;
-EpsInxe;
-jInxe;
+(* ephSquaredInne; *)
+(* nInxe; *)
+(* xInne; *)
+(* rInxe; *)
+(* omInxe; *)
+(* lInxe; *)
+(* ephInxe; *)
+(* xDotInxe; *)
+(* eDotInxe; *)
+(* xInEpsj; *)
+(* eInEpsj; *)
+(* EpsInxe; *)
+(* jInxe; *)
 
 $EccentricPNWaveformOrder;
 $EccentricPNComputePsi4;
@@ -79,8 +80,8 @@ EccProfileReportCount;
 (* Symbols *)
 (*******************************************************************)
 
-{om,h,psi4,psi4Om,hOm,hPhi,psi4Phi,X0,Y0,x0,e0,n0,l0,phi0,XDot,YDot,lInXY, nInXY, lInXY,
-ephSquaredInXY, omInXY, rInXY, $eta};
+(* {om,h,psi4,psi4Om,hOm,hPhi,psi4Phi,X0,Y0,x0,e0,n0,l0,phi0,XDot,YDot,lInXY, nInXY, lInXY, *)
+(* ephSquaredInXY, omInXY, rInXY, $eta}; *)
 
 Begin["`Private`"];
 
