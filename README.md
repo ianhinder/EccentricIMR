@@ -53,9 +53,9 @@ Open a new Mathematica notebook and enter the following:
 
     params = <|"q" -> 1, "x0" -> 0.07, "e0" -> 0.1,
                "l0" -> 0, "phi0" -> 0, "t0" -> 0|>;
-
+    
     hEcc = EccentricIMRWaveform[params, {0, 10000}];
-
+    
     ListLinePlot[Re[hEcc]]
 
 ![Eccentric waveform](ecc-waveform.png)
@@ -86,9 +86,9 @@ Example:
     In[1]:= hEcc = EccentricIMRWaveform[<|"q" -> 1, "x0" -> 0.07,
       "e0" -> 0.1, "l0" -> 0, "phi0" -> 0, "t0" -> 0|>,
       {0, 10000}];
-
+    
     In[2]:= Take[hEcc, 10]
-
+    
     Out[2]:= {{0., -0.127741 + 0.000381028 I}, {1., -0.127596 + 
     0.00619006 I}, {2., -0.127182 + 0.0119862 I}, {3., -0.126498 + 
     0.0177567 I}, {4., -0.125546 + 0.0234884 I}, {5., -0.12433 + 
