@@ -5,6 +5,8 @@
 A Mathematica package for generating gravitational waveforms for
 nonspinning eccentric binary black hole mergers.
 
+Requirements: Mathematica v10 (Jul 2014) or later
+
 EccentricIMR was written by Ian Hinder and is distributed under the terms of the GNU General Public Licence (GPL) version 2.
 
 Copyright (C) Ian Hinder, 2017.
