@@ -183,7 +183,7 @@ protectArguments[EccentricIMRWaveform];
 
 EccentricIMRWaveform[params_Association, {t1_, t2_, dt_:1.0}] :=
   Module[{pnSoln, hCirc, ttm},
-    pnSoln = EccentricPNSolution[params, {t1, t2, dt}];
+    pnSoln = Block[{$EccentricPNComputePsi4=False}, EccentricPNSolution[params, {t1, t2, dt}]];
     hCirc = CircularWaveform[params["q"], 0.];
     ttm = timeToMergerFunction[];
     EccentricIMRWaveform[pnSoln, hCirc, params["q"], ttm, dt]];
