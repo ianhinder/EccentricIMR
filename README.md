@@ -11,7 +11,7 @@ EccentricIMR was written by Ian Hinder and is distributed under the terms of the
 
 Copyright (C) Ian Hinder, 2017.
 
-See _Hinder, Kidder and Pfeiffer - An eccentric binary black hole inspiral-merger-ringdown gravitational waveform model from numerical relativity and post-Newtonian theory_, 2017 for details of the construction of the waveform.
+See [Hinder, Kidder and Pfeiffer - An eccentric binary black hole inspiral-merger-ringdown gravitational waveform model from numerical relativity and post-Newtonian theory, 2017](http://arxiv.org/abs/1709.02007) for details of the construction of the waveform.
 
 ## Installation
 
