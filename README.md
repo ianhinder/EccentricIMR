@@ -15,6 +15,9 @@ See [Hinder, Kidder and Pfeiffer - An eccentric binary black hole inspiral-merge
 
 ## Installation
 
+You can install EccentricIMR either using Git (recommended) or by
+downloading a zip file.
+
 ### Using Git (recommended)
 
 Change into your Mathematica applications directory.
