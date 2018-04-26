@@ -310,7 +310,7 @@ EccentricSoln[args___] :=
 EccentricPNSolution[params_Association, {t1_, t2_, dt_:1.0}] :=
   Module[{pnSolnRules},
     pnSolnRules = EccentricSoln[xeModel, N@etaOfq[params["q"]],
-      {N@params["x0"], N@params["e0"], N@params["l0"], N@params["phi0"]},
+      {N@params["x0"], N@params["e0"] /. (0. -> 10.^-15), N@params["l0"], N@params["phi0"]},
       N@params["t0"], N/@{t1, t2, dt}];
     pnSolnToAssoc[pnSolnRules, params["q"]]];
 
