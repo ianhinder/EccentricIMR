@@ -3,6 +3,7 @@ BeginPackage["EccentricIMR`CircularMergerModel`"];
 
 CircularWaveformModel;
 CircularWaveform;
+EccentricIMR`$EccentricIMRCalibrationWarnings;
 
 Begin["`Private`"];
 
@@ -50,8 +51,9 @@ CircularWaveform[model_Association, q_?NumericQ, phi0_?NumericQ] :=
      etaRange = model["AmplitudeFunctions"][[1]][[1,1]];
      qRange = Reverse[qOfeta/@etaRange];
 
-     If[q < qRange[[1]]-eps || q > qRange[[2]]+eps,
-       Print["WARNING: Evaluating CircularWaveform at q=", q, " which is outside the calibration range ", qRange, " of the circular merger model"]];
+     If[EccentricIMR`$EccentricIMRCalibrationWarnings =!= False &&
+       (q < qRange[[1]]-eps || q > qRange[[2]]+eps),
+       Print["WARNING: Circular waveform model evaluated at q=", q, " which is outside its calibration range ", qRange, ".  Set $EccentricIMRCalibrationWarnings to False to disable this warning."]];
 
      AOfqIneta =
        MapThread[{#1, 

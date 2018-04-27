@@ -6,6 +6,7 @@ EccentricIMRWaveform;
 EccentricPNSolution;
 
 $EccentricIMRInvalidArguments;
+EccentricIMR`$EccentricIMRCalibrationWarnings;
 
 Begin["`Private`"];
 
@@ -186,9 +187,9 @@ EccentricIMRWaveform[params_Association, {t1_, t2_, dt_:1.0}] :=
     pnSoln = Block[{$EccentricPNComputePsi4=False}, EccentricPNSolution[params, {t1, t2, dt}]];
     hCirc = CircularWaveform[params["q"], 0.];
     ttm = timeToMergerFunction[];
-    If[q < qRange[[1]]-eps || q > qRange[[2]]+eps,
-      Print["WARNING: Evaluating time-to-merger fit function at q=", q,
-        " which is outside its calibration range ", qRange, ". The merger waveform may not be reliable."]];
+    If[EccentricIMR`$EccentricIMRCalibrationWarnings =!= False && (q < qRange[[1]]-eps || q > qRange[[2]]+eps),
+      Print["WARNING: Time-to-merger fit function evaluated at q=", q,
+        " which is outside its calibration range ", qRange, ". The merger waveform may not be reliable.  Set $EccentricIMRCalibrationWarnings to False to disable this warning."]];
     EccentricIMRWaveform[pnSoln, hCirc, params["q"], ttm, dt]];
 
 EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_, dt_] :=
@@ -204,6 +205,11 @@ EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_, dt_] :=
   tPN = t /. FindRoot[xFn[t] == xPN, {t, xFn[[1, 1, 2]] - 100}];
   tBlendStart = t /. FindRoot[xFn[t] == $blendStartX, {t, xFn[[1, 1, 2]] - 100}];
   ePN = pnSoln["e"][tPN];
+
+  If[EccentricIMR`$EccentricIMRCalibrationWarnings =!= False && ePN > 0.1, 
+    Print["WARNING: Time-to-merger fit function evaluated at e=",
+      ePN," at t=", tPN," which is outside its calibration range {0,0.1}. The merger waveform may not be reliable.  Set $EccentricIMRCalibrationWarnings to False to disable this warning."]];
+
   lPN = pnSoln["l"][tPN];
   ttpCal = ttm[q,ePN,lPN]; 
   tPeakEcc = tPN + ttpCal;
