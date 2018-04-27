@@ -51,7 +51,7 @@ CircularWaveform[model_Association, q_?NumericQ, phi0_?NumericQ] :=
      qRange = Reverse[qOfeta/@etaRange];
 
      If[q < qRange[[1]]-eps || q > qRange[[2]]+eps,
-       Print["WARNING: Evaluating CircularWaveform at q=", q, " which is outside the calibration range ", qRange]];
+       Print["WARNING: Evaluating CircularWaveform at q=", q, " which is outside the calibration range ", qRange, " of the circular merger model"]];
 
      AOfqIneta =
        MapThread[{#1, 

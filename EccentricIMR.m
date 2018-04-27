@@ -182,10 +182,13 @@ blendWaveforms[{h1_List, h2_List}, {t1_, t2_}] :=
 protectArguments[EccentricIMRWaveform];
 
 EccentricIMRWaveform[params_Association, {t1_, t2_, dt_:1.0}] :=
-  Module[{pnSoln, hCirc, ttm},
+  Module[{pnSoln, hCirc, ttm, qRange = {1,3}, eps=10.^-3, q = params["q"]},
     pnSoln = Block[{$EccentricPNComputePsi4=False}, EccentricPNSolution[params, {t1, t2, dt}]];
     hCirc = CircularWaveform[params["q"], 0.];
     ttm = timeToMergerFunction[];
+    If[q < qRange[[1]]-eps || q > qRange[[2]]+eps,
+      Print["WARNING: Evaluating time-to-merger fit function at q=", q,
+        " which is outside its calibration range ", qRange, ". The merger waveform may not be reliable."]];
     EccentricIMRWaveform[pnSoln, hCirc, params["q"], ttm, dt]];
 
 EccentricIMRWaveform[pnSoln_Association, hCirc_List, q_, ttm_, dt_] :=
